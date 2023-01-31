@@ -79,8 +79,18 @@ class CalendarView(generic.ListView):
         total_emp = Addemployee.objects.filter(Emp_status=0).count()
         print(total_emp)
             
-        total_Leave = Leave_App.objects.count()
+        total_Leave = Leave_App.objects.filter(leave_status=0).count()
         print(total_Leave)
+        
+        # current_date = datetime.now().strftime('%d-%m-%Y')
+        # print(current_date)
+        
+        # today = datetime.now().date()
+        # print(today)
+        # leave = Leave_App.objects.filter(From=today)
+        # # today_Leave = Leave_App.objects.filter(From=current_date).count()
+        # print(leave)
+        
             
         dic ={
             'total_emp':total_emp,
@@ -117,12 +127,17 @@ class CalendarViewEmp(generic.ListView):
     model = Event
     template_name = 'sidebar.html'
     
+    
     def dash(self):   
         Name = self.request.session['Name']
         Emp_ID = self.request.session['Emp_ID']
         Paid_leave = Leave_App.objects.filter(Emp_ID=Emp_ID,Category='Paid Leave').count()
         # print(Paid_leave)
-        
+ 
+        emp_reg = Addemployee.objects.get(Name=Name)
+        print(emp_reg.Image)
+
+            
         for leave_paid1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_Paid_Leave','Pending_Paid_Leave'):
             print(leave_paid1)
             x_paid=0
@@ -175,6 +190,7 @@ class CalendarViewEmp(generic.ListView):
             'total_Sick_leave':total_Sick_leave,
             'total_halfday_leave':total_halfday_leave,
             'total_Unpaid_leave':total_Unpaid_leave,
+            'emp_reg':emp_reg,
         }
         
         return dic
@@ -269,8 +285,8 @@ def addEmployee(request):
                 Image = form.cleaned_data.get('Image')
                 Address = form.cleaned_data.get('Address')
                 department = form.cleaned_data.get('department')
-                # subject ="Your Account has been created" 
-                # send_mail(subject, f'User_name:{User_name}\n\nPassword :{Password}\n\n', 'settings.EMAIL_HOST_USER', [Email],fail_silently=False) 
+                subject ="Your Account has been created" 
+                send_mail(subject, f'Welcome Abord, your Account has been Activated \n\nUser_name:{User_name}\n\nPassword :{Password}\n\n Regards \n\n Apcosys Pvt Ltd ', 'settings.EMAIL_HOST_USER', [Email],fail_silently=False) 
                 
                 form.save()
                 messages.success(request,"Employee Registered SuccessFully")
@@ -278,6 +294,7 @@ def addEmployee(request):
         
     else:
         form = AddemployeeForm()  
+        messages.error(request,"Employee Details is not Registered")
     return render(request,'addEmployee.html',{'form':form})
 
 
@@ -608,10 +625,11 @@ def employeeLogin(request):
             request.session['User_name'] = User_name
             
             
-            for employee in Addemployee.objects.all().filter(User_name=User_name).values_list('id','Name','Emp_ID'):
+            for employee in Addemployee.objects.all().filter(User_name=User_name).values_list('id','Name','Emp_ID','Image'):
                 request.session['id'] = employee[0]
                 request.session['Name'] = employee[1]
                 request.session['Emp_ID'] = employee[2]
+                request.session['Image'] = employee[3]
                 
                 # print(employee[0],employee[1],employee[2])
 
@@ -651,12 +669,23 @@ def profileSetting(request):
 
 
 def leaveSection(request):
-    Name = request.session['Name']
+    if request.session.has_key('Name'):
+        if request.method == 'GET':
+            Name = request.session['Name']
+            emp_reg = Addemployee.objects.get(Name=Name)
+            print(emp_reg)
+            
+            return render(request,'leaveSection.html',{'emp_reg':emp_reg})        
     return render(request,"leaveSection.html",{'Name':Name})
 
 
 def leaveApplication(request):
     Name = request.session['Name']
+    Name = request.session['Name']
+    
+    emp_reg = Addemployee.objects.get(Name=Name)
+    print(emp_reg)
+            
             
     if request.method == "POST": 
         
@@ -690,7 +719,7 @@ def leaveApplication(request):
     con ={
         'form':form,
         'Name':Name,
-
+        'emp_reg':emp_reg,
         
     }
     return render(request,'leaveApplication.html',con)
@@ -716,10 +745,13 @@ def approvalStatus(request):
         if request.method == 'GET':
             Name = request.session['Name']
             Emp_ID = request.session['Emp_ID']
-            for employee in Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('department'):
+            for employee in Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('department','Image'):
                 
                 department = employee[0]
                 
+            emp_reg = Addemployee.objects.get(Name=Name,Emp_ID=Emp_ID)
+            print(emp_reg)
+            
             leave = Leave_App.objects.filter(Emp_ID=Emp_ID).order_by('leave_status').values()
             print(leave)
            
@@ -728,6 +760,7 @@ def approvalStatus(request):
                 'Name':Name,
                 'Emp_ID':Emp_ID,
                 'department':department,
+                'emp_reg':emp_reg,
                 
             }
             
@@ -741,9 +774,13 @@ def reviewEmployeeApplication(request,Emp_ID,id):
         if request.method == 'GET':
             Name = request.session['Name']
             
+            emp_reg = Addemployee.objects.get(Name=Name,Emp_ID=Emp_ID)
+            print(emp_reg)
+            
             dic = {
                 'Emp_ID' : Emp_ID,
-                'id':id
+                'id':id,
+                
             }
             leaves = Leave_App.objects.raw("""SELECT leave."id",leave."Category",leave."From",leave."to",leave."leavedayCategory_From",leave."leavedayCategory_to",leave."Reason",leave."Emp_ID", add_Employee."Name",add_Employee."Contact",add_Employee."Address",add_Employee."D_O_B",add_Employee."Date_of_join",add_Employee."department",add_Employee."Designation",add_Employee."Reporting_Dept",add_Employee."Email",add_Employee."User_name",add_Employee."Password",add_Employee."Confirm_Password",add_Employee."Emp_ID",add_Employee."Image" FROM leave INNER JOIN add_Employee ON leave."Emp_ID" = add_Employee."Emp_ID" where leave."Emp_ID" = %(Emp_ID)s and leave."id" = %(id)s """, dic)
 
@@ -753,7 +790,7 @@ def reviewEmployeeApplication(request,Emp_ID,id):
             # row = cursor.fetchall()
             # print(row)
            
-            return render(request,'reviewEmployeeApplication.html',{'leaves':leaves})
+            return render(request,'reviewEmployeeApplication.html',{'leaves':leaves,'emp_reg':emp_reg})
         
     return render(request,"reviewEmployeeApplication.html")
  
