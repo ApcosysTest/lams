@@ -95,12 +95,13 @@ class CalendarView(generic.ListView):
         context = super().get_context_data(**kwargs)
 
         # use today's date for the calendar
-        d = get_date(self.request.GET.get('day', None))
+        today = str(get_date(self.request.GET.get('day', None)))
+        today_year, today_month, today_date = (int(x) for x in today.split('-'))
 
         d = get_date(self.request.GET.get('month', None))
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
-        cal = Calendar(d.year, d.month)
+        cal = Calendar(d.year, d.month, today_date, today_month, today_year)
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
 
@@ -183,12 +184,17 @@ class CalendarViewEmp(generic.ListView):
         context = super().get_context_data(**kwargs)
 
         # use today's date for the calendar
-        d = get_date(self.request.GET.get('day', None))
-
+        today = str(get_date(self.request.GET.get('day', None)))
+        print(today)
+        today_year, today_month, today_date = (int(x) for x in today.split('-'))
+        print(today_date)
+        print(today_month)
+        print(today_year)
+        
         d = get_date(self.request.GET.get('month', None))
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
-        cal = Calendar(d.year, d.month)
+        cal = Calendar(d.year, d.month, today_date, today_month, today_year)
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
 
@@ -217,7 +223,7 @@ def get_date(req_day):
     if req_day:
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
-    return datetime.today()
+    return date.today()
 
 
 # Event add

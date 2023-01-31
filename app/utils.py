@@ -2,9 +2,12 @@ from calendar import HTMLCalendar
 from .models import Event
 
 class Calendar(HTMLCalendar):
-	def __init__(self, year=None, month=None):
+	def __init__(self, year, month, today_date, today_month, today_year):
 		self.year = year
 		self.month = month
+		self.today_date = today_date
+		self.today_month = today_month
+		self.today_year = today_year
 		super(Calendar, self).__init__()
 
 	# formats a day as a td
@@ -14,9 +17,16 @@ class Calendar(HTMLCalendar):
 		d = ''
 		for event in events_per_day:
 			d += f'<li> {event.title} </li>'
-
+		cells = ""
 		if day != 0:
-			return f"<td><span class='date'>{day}</td>"
+			if self.year == self.today_year:
+				if self.month == self.today_month:
+					if  day == self.today_date:
+						return f"<td class='activee'><span class='date'>{day}</td>"
+					return f"<td><span class='date'>{day}</td>"
+				return f"<td><span class='date'>{day}</td>"
+			else:
+				return f"<td><span class='date'>{day}</td>"
 		return '<td></td>'
 
 	# formats a week as a tr 
@@ -51,7 +61,7 @@ class Eventcal(HTMLCalendar):
 		events_per_day = events.filter(date__day=day)
 		d = ''
 		for event in events_per_day:
-			d += f'<li>{event.date} {event.get_html_url} </li>'
+			d += f'<li>{event.date} {event.title} </li>'
 
 		return f"<ul> {d} </ul></td>"
 

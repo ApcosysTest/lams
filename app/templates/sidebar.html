@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
     <script>
                 
       var dt = new Date();
@@ -76,47 +76,71 @@
 </head>
 <body onload="renderDate();">
 
-    <header id="header" class="header fixed-top d-flex align-items-center" >
-                        <!-- <div class="d-flex align-items-center justify-content-between">
-                          <a href="index.html" class="logo d-flex align-items-center">
-                            <img src="assets/img/Apcosys.png" alt="">
-                            <span class="d-none d-lg-block">Apcosys Private Limited</span>
-                          </a>
-                        </div>End Logo -->
-                        <i class="bi bi-list toggle-sidebar-btn"></i>
-
-                        <h3 class="greeting">Hi {{request.session.Name}}!</h3>
-                        <nav class="header-nav " style="padding-left: 60%;">
-                          <ul class="d-flex align-items-center">
-                            <li>
-                              <a type="button" href="/employeeLogin" class="btn logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+   
+    <header>
+      <!-- Sidebar -->
+      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+        <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <ul class="sidebar-nav " id="sidebar-nav">
+          <li class=" side align-items-left"data-bs-toggle="collapse">
+            <div class="logo d-flex align-items-center">
+              <img src="{% static 'assets/img/Apcosys.png'%}" alt="">
+              <span class="d-none d-lg-block">Apcosys Private Limited</span>
+            </div>
+          </li>
+        <li class="profile"data-bs-toggle="collapse">
+            <img src="assets/img/user.png" alt="" class="img-fluid rounded-circle">
+            <h6 class="greeting">Hi {{request.session.Name}}!</h6>
+        </li>
+        <li class="nav-menu" style="padding-top: 10%;"data-bs-toggle="collapse">
+          <ul id="components-nav" class="nav-content "data-bs-parent="#sidebar-nav"  >
+            <li class="active"><a href="/sidebar"><i class="bi bi-grid"data-bs-toggle="collapse"></i><span>Home</span></a></li>
+            <li><a href="/leaveSection"><i class="bi bi-clock"data-bs-toggle="collapse"></i> <span>Leave Section</span></a></li>
+            <li><a href="/profileSetting"><i class="bi bi-gear"data-bs-toggle="collapse"></i><span>Profile </span></a></li>
+  
+          </ul>
+        </li><!-- .nav-menu -->
+    </ul>
+      </div>
+    </div>
+      </nav>
+      <!-- Sidebar -->
+    
+      <!-- Navbar -->
+      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Toggle button -->
+          <nav class="header-nav "></nav>
+                        <button
+          
+          style="left: 0;"              class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+                        <!-- <a type="button" class="toggle" id="menu-toggle" ><i class="bi bi-list toggle-sidebar-btn"></i></a> -->
+                        <h6 class="greeting">Hi {{request.session.Name}}!</h6>
+                        
+                          <ul class="d-flex align-items-center header-nav">
+                            <li style="list-style: none;">
+                                <button type="button" class="btn logout"href="/employeeLogin"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                                
                             </li>
                           </ul>
-                        </nav><!-- End Icons Navigation -->
-                    
+                        </nav>
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
     </header>
-    <aside id="sidebar" class="sidebar" >
-        <ul class="sidebar-nav " id="sidebar-nav">
-            <li class=" side align-items-left"data-bs-toggle="collapse">
-                <div class="logo d-flex align-items-center">
-                  <img src="{% static 'assets/img/Apcosys.png'%}" alt="">
-                  <span class="d-none d-lg-block">Apcosys Private Limited</span>
-                </div>
-              </li>
-            <li class="profile"data-bs-toggle="collapse">
-                <img src="{{emp_reg.Image}}" alt="" class="img-fluid rounded-circle">
-                <h6>{{request.session.Name}}</h6>
-            </li>
-            <li class="nav-menu" style="padding-top: 10%;"data-bs-toggle="collapse">
-                <ul id="components-nav" class="nav-content "data-bs-parent="#sidebar-nav"  >
-                  <li class="active"><a href="/sidebar"><i class="bi bi-grid"data-bs-toggle="collapse"></i><span>Home</span></a></li>
-                  <li><a href="/leaveSection"><i class="bi bi-clock"data-bs-toggle="collapse"></i> <span>Leave Section</span></a></li>
-                  <li><a href="/profileSetting"><i class="bi bi-gear"data-bs-toggle="collapse"></i><span>Profile </span></a></li>
-        
-                </ul>
-              </li><!-- .nav-menu -->
-        </ul>
-    </aside>
+    
     <main id="main" class="main">
         <section class="section container shadow p-3 mb-5 bg-white rounded dashboard">
             <h5 style="color: #009eff; padding: 0% ;padding-bottom:2%;">Leave Status</h5>
@@ -171,17 +195,22 @@
 
             <div class="clearfix">
               <a class="btn btn-info left" href="/sidebar?{{ prev_month }}"> Previous Month </a>
-              <a class="btn btn-info right" href="/sidebar">Today</a>
-              {% comment %} <a class="btn btn-info right" href="/event_new">Add Event</a> {% endcomment %}
+              <!-- {% comment %} <a class="btn btn-info right" href="/event_new">Add Event</a> {% endcomment %} -->
               <a class="btn btn-info right" href="/sidebar?{{ next_month }}"> Next Month </a>
             </div>
             <div class="row" style="background-color:#fff;">
               <div class="col-md-8">
                 {{ calendar }}
               </div>
-               <div class="col-md-4">
-              {% comment %}  <a class="btn btn-info right" href="{% url 'event_new' %}">Add Event</a>{% endcomment %}
-                {{ event }}
+              <div class="col-md-4">
+              <!-- {% comment %}  <a class="btn btn-info right" href="{% url 'event_new' %}">Add Event</a>{% endcomment %} -->
+                <div class="container event eva">
+                  <div>
+                    <h6 class="evenrHeader">Events</h6>
+                    <hr>
+                  </div>
+                  {{ event }}
+                </div>
               </div> 
             </div>
 
