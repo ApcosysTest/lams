@@ -59,6 +59,24 @@
     <main id="main" class="main">
         <section class="section container shadow p-3 mb-5 bg-white rounded dashboard">
             <h5 style="color: #009eff; padding: 2%;">Add Employee</h5>
+            <center>  
+              <div class="container" >
+              {% if messages %}
+                      <div class ="messages" style="width: 300px;">
+          
+                  {% for message in messages  %}
+                          <div class="alert alert-success" role="alert">
+                              <strong style="color:font-size: 15px;">! {{message}}</strong> 
+                          </div>
+          
+                  {% endfor %}
+          
+                      </div>
+                      
+              {% endif %}
+              </div> 
+          </center> 
+
             <div class="details">
 
 <form action="/addEmployee" method="POST" enctype="multipart/form-data">

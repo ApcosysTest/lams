@@ -16,61 +16,61 @@
 
     <script>
                 
-          var dt = new Date();
-          //calendar
-          function renderDate(){
-          dt.setDate(1);
-          var day = dt.getDay();
+      var dt = new Date();
+      //calendar
+      function renderDate(){
+      dt.setDate(1);
+      var day = dt.getDay();
 
-          var endDate = new Date(
-            dt.getFullYear(),
-            dt.getMonth()+1,
-            0
-          ).getDate();
+      var endDate = new Date(
+        dt.getFullYear(),
+        dt.getMonth()+1,
+        0
+      ).getDate();
 
-          var prevDate = new Date(
-            dt.getFullYear(),
-            dt.getMonth(),
-            0
-          ).getDate();
+      var prevDate = new Date(
+        dt.getFullYear(),
+        dt.getMonth(),
+        0
+      ).getDate();
 
-          var today = new Date();
+      var today = new Date();
 
-          var months = ['January','February','March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December'];
+      var months = ['January','February','March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December'];
 
-          document.getElementById('month').innerHTML = months[dt.getMonth()];
-          document.getElementById('dateStr').innerHTML = dt.getFullYear(); 
+      document.getElementById('month').innerHTML = months[dt.getMonth()];
+      document.getElementById('dateStr').innerHTML = dt.getFullYear(); 
 
-          var cells = "";
+      var cells = "";
 
-          for(x=day; x>0; x--){
-            cells += "<li class = 'prevDate' style='pointer-events:none; opacity:0.6;'>" + (prevDate-x+1) +"</li>";
-          }
+      for(x=day; x>0; x--){
+        cells += "<li class = 'prevDate' style='pointer-events:none; opacity:0.6;'>" + (prevDate-x+1) +"</li>";
+      }
 
-          for(i=1;i<=endDate;i++){
-            if(i==today.getUTCDate() && dt.getMonth() == today.getMonth()){
-              cells += "<li class = 'active-day'>" + i +"</li>";
-            }
-            else{
-              cells += "<li>" + i +"</li>";
+      for(i=1;i<=endDate;i++){
+        if(i==today.getUTCDate() && dt.getMonth() == today.getMonth()){
+          cells += "<li class = 'active-day'>" + i +"</li>";
+        }
+        else{
+          cells += "<li>" + i +"</li>";
 
-            }
-          }
-          document.getElementsByClassName('days')[0].innerHTML = cells;
+        }
+      }
+      document.getElementsByClassName('days')[0].innerHTML = cells;
 
-          }
+      }
 
-          function moveDate(para){
-            if(para == 'prev'){
-              dt.setMonth(dt.getMonth()-1);
-            }
-            else if(para == 'next'){
-              dt.setMonth(dt.getMonth() +1);
-            }
-            
-            renderDate();
-          }
-    </script>
+      function moveDate(para){
+        if(para == 'prev'){
+          dt.setMonth(dt.getMonth()-1);
+        }
+        else if(para == 'next'){
+          dt.setMonth(dt.getMonth() +1);
+        }
+        
+        renderDate();
+      }
+</script>
 
 
 </head>
@@ -125,7 +125,7 @@
                 <div class="col-md-3">
                     <div class="card" style = "background-color: #60C2FF;">
                         <div class="card-body">
-                          <h5 class="card-title" style="color: #ffffff;">{{total_Paid_leave}}</h5>
+                          <h5 class="card-title" style="color: #ffffff;">{{dic.total_Paid_leave}}</h5>
                           <p class="card-text">Paid Leave</p>
                           
                         </div>
@@ -134,7 +134,7 @@
                 <div class="col-md-3">
                     <div class="card"style = "background-color: #52D89C;">
                         <div class="card-body">
-                          <h5 class="card-title" style="color: #ffffff;">{{total_Sick_leave}}</h5>
+                          <h5 class="card-title" style="color: #ffffff;">{{dic.total_Sick_leave}}</h5>
                           <p class="card-text">Sick Leave</p>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-body"style = "background-color: #FF7B5D;">
-                          <h5 class="card-title" style="color: #ffffff;">{{total_halfday_leave}}</h5>
+                          <h5 class="card-title" style="color: #ffffff;">{{dic.total_halfday_leave}}</h5>
                           <p class="card-text">Half-day Leave</p>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                 <div class="col-md-3">
                     <div class="card"style = "background-color: #FFC14E;">
                         <div class="card-body">
-                          <h5 class="card-title" style="color: #ffffff;">{{total_Unpaid_leave}}</h5>
+                          <h5 class="card-title" style="color: #ffffff;">{{dic.total_Unpaid_leave}}</h5>
                           <p class="card-text">Unpaid Leave</p>
                         </div>
                     </div>
@@ -170,19 +170,19 @@
 
 
             <div class="clearfix">
-              <a class="btn btn-info left" href="/adminDashboard?{{ prev_month }}"> Previous Month </a>
-              <a class="btn btn-info right" href="/adminDashboard">Today</a>
+              <a class="btn btn-info left" href="/sidebar?{{ prev_month }}"> Previous Month </a>
+              <a class="btn btn-info right" href="/sidebar">Today</a>
               {% comment %} <a class="btn btn-info right" href="/event_new">Add Event</a> {% endcomment %}
-              <a class="btn btn-info right" href="/adminDashboard?{{ next_month }}"> Next Month </a>
+              <a class="btn btn-info right" href="/sidebar?{{ next_month }}"> Next Month </a>
             </div>
             <div class="row" style="background-color:#fff;">
               <div class="col-md-8">
                 {{ calendar }}
               </div>
-              {% comment %} <div class="col-md-4">
-                <a class="btn btn-info right" href="{% url 'event_new' %}">Add Event</a>
+               <div class="col-md-4">
+              {% comment %}  <a class="btn btn-info right" href="{% url 'event_new' %}">Add Event</a>{% endcomment %}
                 {{ event }}
-              </div> {% endcomment %}
+              </div> 
             </div>
 
           </section>

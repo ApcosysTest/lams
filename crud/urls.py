@@ -27,7 +27,7 @@ urlpatterns = [
 
     path('employeeLogin', views.employeeLogin),
     path('addEmployee',views.addEmployee),
-    path('sidebar', views.sidebar),
+    # path('sidebar', views.sidebar),
     path('profileSetting', views.profileSetting),
     path("approvalStatus",views.approvalStatus),
     path('leaveSection', views.leaveSection),
@@ -54,6 +54,7 @@ urlpatterns = [
     path('next_month', views.next_month),
 
     re_path(r'^adminDashboard$', views.CalendarView.as_view(), name='adminDashboard'),
+    re_path(r'^sidebar$', views.CalendarViewEmp.as_view(), name='sidebar'),
     re_path(r'^event/new$', views.event, name='event_new'),
     re_path(r'^event/edit/(?P<event_id>\d+)/$', views.event, name='event_edit'),
 ]

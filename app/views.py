@@ -110,6 +110,95 @@ class CalendarView(generic.ListView):
         
         context['dic']=self.dash()
         return context
+    
+class CalendarViewEmp(generic.ListView):
+    
+    model = Event
+    template_name = 'sidebar.html'
+    
+    def dash(self):   
+        Name = self.request.session['Name']
+        Emp_ID = self.request.session['Emp_ID']
+        Paid_leave = Leave_App.objects.filter(Emp_ID=Emp_ID,Category='Paid Leave').count()
+        # print(Paid_leave)
+        
+        for leave_paid1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_Paid_Leave','Pending_Paid_Leave'):
+            print(leave_paid1)
+            x_paid=0
+            x_paid = list(leave_paid1)
+            print(x_paid)
+            paidleave = [eval(i) for i in x_paid]
+            print(paidleave)
+            total_Paid_leave = int(paidleave[0])-int(paidleave[1])
+            print(total_Paid_leave)
+            
+        for leave_sick1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_Sick_Leave','Pending_Sick_Leave'):
+            print(leave_sick1)
+            x_sick = 0
+            x_sick = list(leave_sick1)
+            print(x_sick)
+            sickleave = [eval(i) for i in x_sick]
+            print(sickleave)
+            total_Sick_leave = int(sickleave[0])-int(sickleave[1])
+            print(total_Sick_leave)
+            
+            
+            
+        for leave_halfday1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_HalfDay_Leave','Pending_HalfDay_Leave'):
+            print(leave_halfday1)
+            x_halfday = 0
+            x_halfday = list(leave_halfday1)
+            print(x_halfday)
+            halfdayleave = [eval(i) for i in x_halfday]
+            print(halfdayleave)
+            total_halfday_leave = int(halfdayleave[0])-int(halfdayleave[1])
+            print(total_halfday_leave)
+            
+            
+            
+        for leave_Unpaid1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_Unpaid_Leave','Pending_Unpaid_Leave'):
+            print(leave_Unpaid1)
+            x_Unpaid = 0
+            x_Unpaid = list(leave_Unpaid1)
+            print(x_Unpaid)
+            Unpaidleave = [eval(i) for i in x_Unpaid]
+            print(Unpaidleave)
+            total_Unpaid_leave = int(Unpaidleave[0])-int(Unpaidleave[1])
+            print(total_Unpaid_leave)
+    
+        
+        
+            
+        dic ={
+            'total_Paid_leave':total_Paid_leave,
+            'total_Sick_leave':total_Sick_leave,
+            'total_halfday_leave':total_halfday_leave,
+            'total_Unpaid_leave':total_Unpaid_leave,
+        }
+        
+        return dic
+        
+    def get_context_data(self, **kwargs):
+        print("h1")
+        context = super().get_context_data(**kwargs)
+
+        # use today's date for the calendar
+        d = get_date(self.request.GET.get('day', None))
+
+        d = get_date(self.request.GET.get('month', None))
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
+        cal = Calendar(d.year, d.month)
+        html_cal = cal.formatmonth(withyear=True)
+        context['calendar'] = mark_safe(html_cal)
+
+        event = Eventcal(d.year, d.month)
+        html_event = event.formatmonth(withyear=True)
+        context['event'] = mark_safe(html_event)
+        
+        context['dic']=self.dash()
+        return context
+    
 
 def prev_month(d):
     first = d.replace(day=1)
@@ -178,7 +267,8 @@ def addEmployee(request):
                 # send_mail(subject, f'User_name:{User_name}\n\nPassword :{Password}\n\n', 'settings.EMAIL_HOST_USER', [Email],fail_silently=False) 
                 
                 form.save()
-                return redirect('/adminDashboard') 
+                messages.success(request,"Employee Registered SuccessFully")
+                return redirect('/addEmployee') 
         
     else:
         form = AddemployeeForm()  
@@ -221,11 +311,10 @@ def update(request, id):
         os.remove(employee.Image.path)
     form = AddemployeeForm(request.POST, instance = employee)  
     if form.is_valid(): 
-        
         form.save()  
         return redirect("/edit")  
-    # else:
-        # print(form.errors) 
+    else:
+        print(form.errors) 
     return render(request, 'editEmployee.html', {'employee': employee})  
 
 
@@ -536,70 +625,6 @@ def employeeLogin(request):
             return render(request,"employeeLogin.html")
 
     return render(request,"employeeLogin.html")
-
-
-def sidebar(request):   
-    Name = request.session['Name']
-    Emp_ID = request.session['Emp_ID']
-    Paid_leave = Leave_App.objects.filter(Emp_ID=Emp_ID,Category='Paid Leave').count()
-    # print(Paid_leave)
-    
-    for leave_paid1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_Paid_Leave','Pending_Paid_Leave'):
-        print(leave_paid1)
-        x_paid=0
-        x_paid = list(leave_paid1)
-        print(x_paid)
-        paidleave = [eval(i) for i in x_paid]
-        print(paidleave)
-        total_Paid_leave = int(paidleave[0])-int(paidleave[1])
-        print(total_Paid_leave)
-        
-    for leave_sick1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_Sick_Leave','Pending_Sick_Leave'):
-        print(leave_sick1)
-        x_sick = 0
-        x_sick = list(leave_sick1)
-        print(x_sick)
-        sickleave = [eval(i) for i in x_sick]
-        print(sickleave)
-        total_Sick_leave = int(sickleave[0])-int(sickleave[1])
-        print(total_Sick_leave)
-        
-        
-        
-    for leave_halfday1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_HalfDay_Leave','Pending_HalfDay_Leave'):
-        print(leave_halfday1)
-        x_halfday = 0
-        x_halfday = list(leave_halfday1)
-        print(x_halfday)
-        halfdayleave = [eval(i) for i in x_halfday]
-        print(halfdayleave)
-        total_halfday_leave = int(halfdayleave[0])-int(halfdayleave[1])
-        print(total_halfday_leave)
-        
-        
-        
-    for leave_Unpaid1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_Unpaid_Leave','Pending_Unpaid_Leave'):
-        print(leave_Unpaid1)
-        x_Unpaid = 0
-        x_Unpaid = list(leave_Unpaid1)
-        print(x_Unpaid)
-        Unpaidleave = [eval(i) for i in x_Unpaid]
-        print(Unpaidleave)
-        total_Unpaid_leave = int(Unpaidleave[0])-int(Unpaidleave[1])
-        print(total_Unpaid_leave)
-   
-    
-    
-        
-    dic ={
-        'total_Paid_leave':total_Paid_leave,
-        'total_Sick_leave':total_Sick_leave,
-        'total_halfday_leave':total_halfday_leave,
-        'total_Unpaid_leave':total_Unpaid_leave,
-    }
-        
-
-    return render(request,"sidebar.html",dic)
 
 
 
