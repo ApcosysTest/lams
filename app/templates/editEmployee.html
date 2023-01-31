@@ -61,64 +61,75 @@
         <section class="section container shadow p-3 mb-5 bg-white rounded dashboard">
             <h5 style="color: #009eff; padding: 2%;">Update Employee Details</h5>
             <div class="details">
-                    <form method="POST" class="post-form" action="/update/{{employee.id}}">
+                    <form method="POST" class="post-form" action="/update/{{employee.id}}" enctype="multipart/form-data">
                       {% csrf_token %}  
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="inputField">
-                                    <input type="text" placeholder="Name" id="Name" name="Name" required value="{{ employee.Name }}">
+                                    <input type="text" placeholder="Name" id="Name" name="Name"  value="{{ employee.Name }}">
                                 </div>
                                 <div>
-                                    <input type="tel" placeholder="Phone Number" id="Contact" name="Contact" required value="{{ employee.Contact }}">
+                                    <input type="tel" placeholder="Phone Number" id="Contact" name="Contact"  value="{{ employee.Contact }}">
                                 </div>
                                 
                                 <div>
-                                    <input type="text" placeholder="Address" id="Address" name="Address" required value="{{ employee.Address }}">
+                                    <input type="text" placeholder="Address" id="Address" name="Address"  value="{{ employee.Address }}">
                                 </div>
                                 <div class="date" >
-                                  <input type="text" placeholder="DOB"style="margin-right: 40%" onfocus="(this.type='date')" id="D_O_B" name="D_O_B" required value="{{ employee.D_O_B }}">
+                                  <input type="text" placeholder="DOB"style="margin-right: 40%" onfocus="(this.type='date')" id="D_O_B" name="D_O_B"  value="{{ employee.D_O_B|date:'Y-m-d' }}">
                                 </div>
                                 <div class="date" >
-                                  <input type="text" placeholder="DOJ"style="margin-right: 40%" onfocus="(this.type='date')" id="Date_of_join" name="Date_of_join"   required value="{{ employee.Date_of_join }}">
+                                  <input type="text" placeholder="DOJ"style="margin-right: 40%" onfocus="(this.type='date')" id="Date_of_join" name="Date_of_join"    value="{{ employee.Date_of_join|date:'Y-m-d' }}">
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Department" id="department" name="department"  required value="{{ employee.department }}">
+                                    <input type="text" placeholder="Department" id="department" name="department"   value="{{ employee.department }}">
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Designation" id="Designation" name="Designation"  required value="{{ employee.Designation }}">
+                                    <input type="text" placeholder="Designation" id="Designation" name="Designation"   value="{{ employee.Designation }}">
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Reporting Person"  id="Reporting_Dept" name="Reporting_Dept"   required value="{{ employee.Reporting_Dept }}">
+                                    <input type="text" placeholder="Reporting Person"  id="Reporting_Dept" name="Reporting_Dept"    value="{{ employee.Reporting_Dept }}">
                                 </div>
                             </div>
                             <div class="col-md-6">  
                                 <div>
-                                    <input type="Email" placeholder="Email" id="Email" name="Email" required value="{{ employee.Email }}">
+                                    <input type="Email" placeholder="Email" id="Email" name="Email"  value="{{ employee.Email }}">
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Username" id="User_name" name="User_name"  required value="{{ employee.User_name }}">
+                                    <input type="text" placeholder="Username" id="User_name" name="User_name"   value="{{ employee.User_name }}">
                                 </div>
                                 <div>
-                                    <input type="password" placeholder="Password" id="Password" name="Password" required value="{{ employee.Password }}">
+                                    <input type="password" placeholder="Password" id="Password" name="Password"  value="{{ employee.Password }}">
                                 </div>
                                 <div>
-                                    <input type="password" placeholder="Comfirm Password" id="Confirm_Password" name="Confirm_Password" required value="{{ employee.Confirm_Password }}">
+                                    <input type="password" placeholder="Comfirm Password" id="Confirm_Password" name="Confirm_Password"  value="{{ employee.Confirm_Password }}">
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Employee Id" id="Emp_ID" name="Emp_ID"  required value="{{ employee.Emp_ID }}">
+                                    <input type="text" placeholder="Employee Id" id="Emp_ID" name="Emp_ID"   value="{{ employee.Emp_ID }}">
                                 </div>
+
+                               
                                 <div class="card cards">
                                   <div class="card-body">
-                                    <p class="card-text" style="color:#5B5B5B;">Update Photo<input id="fileUp" type="file" id="Image" name="Image" required value="{{ employee.Image }}">
+                                    <p class="card-text" style="color:#5B5B5B;">Photo
+                                    <a href="{{employee.Image.url}}" target="_blank" style="margin-left: 15px;">View Photo</a>
+                                    <p class="card-text" style="color:#5B5B5B;">Update Photo<input id="fileUp" type="file" id="Image" name="Image"  value="{{ employee.Image }}">
                                       <a id="upload_link" href="javascript:void(0)"  type="button" style="margin-left:22%;" class="btn btn-primary btn-sm btn-block addButton">Upload</a>
                                     </div>
-                                  </div>
+                                  </div> 
                                   <a href="/edit" type="button" class="btn  btn-outline-info btn-sm btn-block cancelButton"> Cancel</a>
                                   <button type="submit" class="btn   btn-primary btn-sm btn-block addButton">Update</button>
                             </div>
                         </div>
                         
-                       
+                       {% comment %} <div class="card cards">
+                          <div class="card-body">
+                            <p class="card-text" style="color:#5B5B5B;">Photo
+                            <a href="{{employee.Image.url}}" target="_blank" style="margin-left: 15px;">View Photo</a>
+                             <p class="card-text" style="color:#5B5B5B;">Update Photo<input id="fileUp" type="file" id="Image" name="Image" required value="{{ employee.Image }}">
+                              <a id="upload_link" href="javascript:void(0)"  type="button" style="margin-left:22%;" class="btn btn-primary btn-sm btn-block addButton">Upload</a> 
+                            </div>
+                          </div> {% endcomment %}
                     </form>
                 
             </div>

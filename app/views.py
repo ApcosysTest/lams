@@ -309,7 +309,8 @@ def update(request, id):
     employee = Addemployee.objects.get(id=id)  
     if len(employee.Image) > 0:
         os.remove(employee.Image.path)
-    form = AddemployeeForm(request.POST, instance = employee)  
+        
+    form = AddemployeeForm(request.POST,request.FILES, instance = employee)  
     if form.is_valid(): 
         form.save()  
         return redirect("/edit")  
