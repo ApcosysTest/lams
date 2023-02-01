@@ -10,22 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from pathlib import Path , os
+from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7p2(e#f)8+xhit+%w*v9uk4kbmrpwt!rj)8mk#=3h^23_6sj9b'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,12 +83,12 @@ WSGI_APPLICATION = 'crud.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.postgresql',  
-        'NAME': 'leave',  
+        'NAME': 'lams',  
         'USER':'postgres',  
-        'PASSWORD':'123',  
-        'HOST':'localhost',  
+        'PASSWORD':'Apcosys0001',  
+        'HOST':'db-lams.c66eam8fjckg.ap-south-1.rds.amazonaws.com',  
         'PORT':'5432'  
-    }  
+    } 
 }  
 
 
@@ -119,23 +125,30 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
+MEDIA_URL = 'media/'
 
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+FORCE_SERVE_STATIC = True
+
+EMAIL_BACKEND =str(os.getenv('EMAIL_BACKEND'))
+EMAIL_HOST = str(os.getenv('EMAIL_HOST'))
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'noreply.leapss@gmail.com'
-EMAIL_HOST_PASSWORD = 'edqoilpkuxolemhe'
+EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))

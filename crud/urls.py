@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('homePage', views.homePage),
+    path('', views.homePage),
     path('adminLogin', views.adminLogin),
     # path('adminDashboard',views.adminDashboard),
 
@@ -58,6 +58,10 @@ urlpatterns = [
     re_path(r'^event/new$', views.event, name='event_new'),
     re_path(r'^event/edit/(?P<event_id>\d+)/$', views.event, name='event_edit'),
 ]
+
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+elif getattr(settings, 'FORCE_SERVE_STATIC', False):
+    settings.DEBUG = True
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    settings.DEBUG = False
