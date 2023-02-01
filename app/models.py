@@ -58,7 +58,7 @@ class Addemployee(models.Model):
         
         
 class Leave_App(models.Model):
-    
+    Date = models.DateField(auto_now=True)
     Category = models.CharField(max_length=200)          
     From = models.CharField(max_length=200) 
     to = models.CharField(max_length=200 )
@@ -71,9 +71,6 @@ class Leave_App(models.Model):
     comments = models.CharField(max_length=500,blank = True,null=True)
     
 
-    
-    
-    
     class Meta:  
         db_table = "leave"  
 

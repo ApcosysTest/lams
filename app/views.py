@@ -82,19 +82,18 @@ class CalendarView(generic.ListView):
         total_Leave = Leave_App.objects.filter(leave_status=0).count()
         print(total_Leave)
         
-        # current_date = datetime.now().strftime('%d-%m-%Y')
-        # print(current_date)
-        
-        # today = datetime.now().date()
-        # print(today)
-        # leave = Leave_App.objects.filter(From=today)
-        # # today_Leave = Leave_App.objects.filter(From=current_date).count()
-        # print(leave)
+        current_date = 0 
+        current_date = datetime.now().strftime('%Y-%m-%d')
+        print(current_date)  
+
+        today_leave = Leave_App.objects.filter(Date=current_date,leave_status=1).count()
+        print(today_leave)
         
             
         dic ={
             'total_emp':total_emp,
-            'total_Leave':total_Leave
+            'total_Leave':total_Leave,
+            'today_leave':today_leave,
         }
             
         return dic
@@ -133,10 +132,11 @@ class CalendarViewEmp(generic.ListView):
         Emp_ID = self.request.session['Emp_ID']
         Paid_leave = Leave_App.objects.filter(Emp_ID=Emp_ID,Category='Paid Leave').count()
         # print(Paid_leave)
- 
+
         emp_reg = Addemployee.objects.get(Name=Name)
         print(emp_reg.Image)
-
+        
+        
             
         for leave_paid1 in  Addemployee.objects.all().filter(Emp_ID=Emp_ID).values_list('Total_Paid_Leave','Pending_Paid_Leave'):
             print(leave_paid1)
@@ -191,6 +191,7 @@ class CalendarViewEmp(generic.ListView):
             'total_halfday_leave':total_halfday_leave,
             'total_Unpaid_leave':total_Unpaid_leave,
             'emp_reg':emp_reg,
+            
         }
         
         return dic
@@ -686,12 +687,14 @@ def leaveApplication(request):
     emp_reg = Addemployee.objects.get(Name=Name)
     print(emp_reg)
             
-            
+    current_date = datetime.now().strftime('%m %d %Y')
+    print(current_date)       
     if request.method == "POST": 
         
         form = Leave_AppForm(request.POST)  
         print(form)
         if form.is_valid():
+            Date = form.cleaned_data.get('Date')
             Category = form.cleaned_data.get('Category')
             From = form.cleaned_data.get('From')
             to = form.cleaned_data.get('to')
@@ -720,7 +723,7 @@ def leaveApplication(request):
         'form':form,
         'Name':Name,
         'emp_reg':emp_reg,
-        
+        'current_date':current_date,
     }
     return render(request,'leaveApplication.html',con)
 

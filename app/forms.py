@@ -12,6 +12,7 @@ class AddemployeeForm(forms.ModelForm):
         fields = "__all__"  
         
     widgets = {
+            'Date':DateInput(),
             'D_O_B': DateInput(),
             'Date_of_join': DateInput(), 
         } 
