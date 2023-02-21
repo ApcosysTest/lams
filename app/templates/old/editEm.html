@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management System</title>
+    <link rel="stylesheet" href="{% static 'assets/css/admin.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <!-- Bootstrap core CSS     -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+
+</head>
+<body>
+
+  <header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+    <div class="list-group list-group-flush mx-3 mt-4">
+      <ul class="sidebar-nav " id="sidebar-nav">
+          <li class=" side align-items-left"data-bs-toggle="collapse">
+            <div class="logo d-flex align-items-center">
+              <img src="{% static 'assets/img/Apcosys.png'%}" alt="">
+              <span class="d-none d-lg-block">Apcosys Private Limited</span>
+            </div>
+          </li>
+        <li class="profile"data-bs-toggle="collapse">
+          <img src="{% static 'assets/img/user.png'%}" alt="" class="img-fluid rounded-circle">
+          <h6>{{request.session.Username}}</h6>
+      </li>
+        <li class="nav-menu" style="padding-top: 10%; "data-bs-toggle="collapse">
+          <ul id="components-nav" class="nav-content "data-bs-parent="#sidebar-nav"  >
+            <li  ><a href="/adminDashboard"><span>Dashboard</span></a></li>
+            <li><a href="/leaveApplicationDetails"> <span>Employee Leave Details</span></a></li>
+            <li class="active"><a href="/employees"><span>Employee</span></a></li>
+  
+          </ul>
+      </li>
+    </ul>
+    </div>
+  </div>
+    </nav>
+    <!-- Sidebar -->
+  
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <nav class="header-nav "></nav>
+                      <button
+                    class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#sidebarMenu"
+      aria-controls="sidebarMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+                      <!-- <a type="button" class="toggle" id="menu-toggle" ><i class="bi bi-list toggle-sidebar-btn"></i></a> -->
+                      <div class="leapss"><img src="{% static 'assets/img/logo.png'%}" alt=""></div>
+                      <h3 class="greeting">Hi {{request.session.Username}}!</h3>
+                      
+                        <ul class="d-flex align-items-center header-nav">
+                          <li style="list-style: none;">
+                              <!-- <button type="button" class="btn logout"><i class="bi bi-box-arrow-right"></i> Logout</button> -->
+                              <a type="button" href="/adminLogin" class="btn logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                          </li>
+                        </ul>
+                      </nav>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+    <main id="main" class="main">
+        <section class="section container shadow p-3 mb-5 bg-white rounded dashboard">
+            <h5 style="color: #009eff; padding: 2%;">Update Employee Details</h5>
+            <div class="details">
+                    <form method="POST" class="post-form" action="/update/{{employee.id}}" enctype="multipart/form-data">
+                      {% csrf_token %}  
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="inputField">
+                                    <input type="text" placeholder="Name" id="Name" name="Name"  value="{{ employee.Name }}">
+                                </div>
+                                <div>
+                                    <input type="tel" placeholder="Phone Number" id="Contact" name="Contact"  value="{{ employee.Contact }}">
+                                </div>
+                                
+                                <div>
+                                    <input type="text" placeholder="Address" id="Address" name="Address"  value="{{ employee.Address }}">
+                                </div>
+                                <div class="date" >
+                                  <input type="text" placeholder="DOB"style="margin-right: 40%" onfocus="(this.type='date')" id="D_O_B" name="D_O_B"  value="{{ employee.D_O_B|date:'Y-m-d' }}">
+                                </div>
+                                <div class="date" >
+                                  <input type="text" placeholder="DOJ"style="margin-right: 40%" onfocus="(this.type='date')" id="Date_of_join" name="Date_of_join"    value="{{ employee.Date_of_join|date:'Y-m-d' }}">
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="Department" id="department" name="department"   value="{{ employee.department }}">
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="Designation" id="Designation" name="Designation"   value="{{ employee.Designation }}">
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="Reporting Person"  id="Reporting_Dept" name="Reporting_Dept"    value="{{ employee.Reporting_Dept }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">  
+                                <div>
+                                    <input type="Email" placeholder="Email" id="Email" name="Email"  value="{{ employee.Email }}">
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="Username" id="User_name" name="User_name"   value="{{ employee.User_name }}">
+                                </div>
+                                <div>
+                                    <input type="password" placeholder="Password" id="Password" name="Password" onkeyup="validate_password()" value="{{ employee.Password }}">
+                                </div>
+                                <div>
+                                    <input type="password" placeholder="Comfirm Password" id="Confirm_Password" name="Confirm_Password"  value="{{ employee.Confirm_Password }}">
+                                    <br><span style="margin-left: 2%;" id="wrong_pass_alert"></span>
+                                  </div>
+                                <div>
+                                    <input type="text" placeholder="Employee Id" id="Emp_ID" name="Emp_ID"   value="{{ employee.Emp_ID }}">
+                                </div>
+
+                               
+                                <div class="card cards">
+                                  <div class="card-body">
+                                    <p class="card-text" style="color:#5B5B5B;">Photo
+                                    <a href="{{employee.Image.url}}" target="_blank" style="margin-left: 15px;">View Photo</a>
+                                    <p class="card-text" style="color:#5B5B5B;">Update Photo<input id="fileUp" type="file" id="Image" name="Image"  value="{{ employee.Image }}">
+                                      <a id="upload_link" href="javascript:void(0)"  type="button" style="margin-left:22%;" class="btn btn-primary btn-sm btn-block addButton">Upload</a>
+                                    </div>
+                                  </div> 
+                                  <a href="/edit" type="button" onclick="wrong_pass_alert()" class="btn  btn-outline-info btn-sm btn-block cancelButton"> Cancel</a>
+                                  <button type="submit" class="btn   btn-primary btn-sm btn-block addButton">Update</button>
+                            </div>
+                        </div>
+                        
+                       {% comment %} <div class="card cards">
+                          <div class="card-body">
+                            <p class="card-text" style="color:#5B5B5B;">Photo
+                            <a href="{{employee.Image.url}}" target="_blank" style="margin-left: 15px;">View Photo</a>
+                             <p class="card-text" style="color:#5B5B5B;">Update Photo<input id="fileUp" type="file" id="Image" name="Image" required value="{{ employee.Image }}">
+                              <a id="upload_link" href="javascript:void(0)"  type="button" style="margin-left:22%;" class="btn btn-primary btn-sm btn-block addButton">Upload</a> 
+                            </div>
+                          </div> {% endcomment %}
+                    </form>
+                
+            </div>
+           
+          </section>
+      
+        </main><!-- End #main -->
+        <script>
+          function validate_password() {
+     
+          var pass = document.getElementById('Password').value;
+          var confirm_pass = document.getElementById('Confirm_Password').value;
+          if (pass != confirm_pass) {
+              document.getElementById('wrong_pass_alert').style.color = 'red';
+              document.getElementById('wrong_pass_alert').innerHTML
+                = '☒ Use same password';
+              document.getElementById('create').disabled = true;
+              document.getElementById('create').style.opacity = (0.4);
+          } else {
+              document.getElementById('wrong_pass_alert').style.color = 'green';
+              document.getElementById('wrong_pass_alert').innerHTML =
+                  '🗹 Password Matched';
+              document.getElementById('create').disabled = false;
+              document.getElementById('create').style.opacity = (1);
+          }
+          }     
+
+          function wrong_pass_alert() {
+          if (document.getElementById('Password').value != document.getElementById('Confirm_Password').value) {
+              alert("Password not Matched");
+          } 
+          }
+        </script>
+        <script>
+            $("#upload_link").click(function(){
+           $("#fileUp").trigger('click');
+            });
+           </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </script>
+</body>
+</html>

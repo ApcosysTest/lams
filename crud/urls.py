@@ -51,17 +51,31 @@ urlpatterns = [
     path('deactive_emp/<str:Emp_ID>/<int:id>',views.deactive_emp),
     path('active_emp/<str:Emp_ID>/<int:id>',views.active_emp),
     path('prev_month', views.prev_month),
-    path('next_month', views.next_month),
-
+    path('next_month', views.next_month),  
+    path('presentEmployees', views.presentEmployees),
+    path('onLeave', views.onLeave),
+    path('companySetup', views.companySetup),
+    path('company_update', views.company_update),
+    path('employeeProfile/<str:Emp_ID>', views.employeeProfile),
+    path('employeeProfile1', views.employeeProfile1),
+    path('howToUse', views.howToUse),
+    path('leavePolicy', views.leavePolicy),
+    path('leavePolicySetting', views.leavePolicySetting),
+    path('leavePolicySetting_update', views.leavePolicySetting_update),
+    path('profilestatus', views.profilestatus),
+    path('totalEmployees', views.totalEmployees),
+    path('totalEmployeeDetails', views.totalEmployeeDetails  ),
+    path('totalEmployeeDetails_dep2', views.totalEmployeeDetails_dep2),
+    path('totalEmployeeDetails_dep3', views.totalEmployeeDetails_dep3),
+    path('totalEmployeeDetails_dep4', views.totalEmployeeDetails_dep4),
+    path('totalEmployeeDetails_dep5', views.totalEmployeeDetails_dep5),
+    
     re_path(r'^adminDashboard$', views.CalendarView.as_view(), name='adminDashboard'),
     re_path(r'^sidebar$', views.CalendarViewEmp.as_view(), name='sidebar'),
     re_path(r'^event/new$', views.event, name='event_new'),
     re_path(r'^event/edit/(?P<event_id>\d+)/$', views.event, name='event_edit'),
+    re_path(r'^event/delete/(?P<event_id>\d+)/$', views.delete_event, name='event_delete'),
 ]
-
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-elif getattr(settings, 'FORCE_SERVE_STATIC', False):
-    settings.DEBUG = True
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    settings.DEBUG = False
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

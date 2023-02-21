@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management System</title>
+    <link rel="stylesheet" href="{% static 'assets/css/approvalStatus.css'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <!-- Bootstrap core CSS     -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+    <style>
+      .center {
+        text-align: center;
+      }
+      
+      .pagination {
+        display: inline-block;
+      }
+      
+      .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+      }
+      
+      .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+      }
+      
+      .pagination a:hover:not(.active) {background-color: #ddd;}
+      </style>
+</head>
+<body>
+
+  <header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+    <div class="list-group list-group-flush mx-3 mt-4">
+      <ul class="sidebar-nav " id="sidebar-nav">
+        <li class=" side align-items-left"data-bs-toggle="collapse">
+          <div class="logo d-flex align-items-center">
+            <img src="{% static 'assets/img/Apcosys.png'%}" alt="">
+            <span class="d-none d-lg-block">Apcosys Private Limited</span>
+          </div>
+        </li>
+      <li class="profile"data-bs-toggle="collapse">
+          <img src="{{emp_reg.Image.url}}" alt="" class="img-fluid rounded-circle">
+          <h6 class="greeting">Hi {{request.session.Name}}!</h6>
+      </li>
+      <li class="nav-menu" style="padding-top: 10%;"data-bs-toggle="collapse">
+        <ul id="components-nav" class="nav-content "data-bs-parent="#sidebar-nav"  >
+          <li ><a href="/sidebar"><i class="bi bi-grid"data-bs-toggle="collapse"></i><span>Home</span></a></li>
+          <li class="active"><a href="/leaveSection"><i class="bi bi-clock"data-bs-toggle="collapse"></i> <span>Leave Section</span></a></li>
+          <li><a href="/profileSetting"><i class="bi bi-gear"data-bs-toggle="collapse"></i><span>Profile </span></a></li>
+
+        </ul>
+      </li><!-- .nav-menu -->
+  </ul>
+    </div>
+  </div>
+    </nav>
+    <!-- Sidebar -->
+  
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <nav class="header-nav "></nav>
+                      <button
+        
+        style="left: 0;"              class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#sidebarMenu"
+      aria-controls="sidebarMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+                      <!-- <a type="button" class="toggle" id="menu-toggle" ><i class="bi bi-list toggle-sidebar-btn"></i></a> -->
+                      <h6 class="greeting">Hi {{request.session.Name}}!</h6>
+                      
+                        <ul class="d-flex align-items-center header-nav">
+                          <li style="list-style: none;">
+                              <button type="button" class="btn logout"href="/employeeLogin"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                              
+                          </li>
+                        </ul>
+                      </nav>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+    <main id="main" class="main">
+        <section class="section container shadow p-3 mb-5 bg-white rounded dashboard">
+            <h4 style="color: #009eff;padding: 1%;">Approval Status</h4><hr>
+            <table class="table table-responsive-lg"style=" overflow-x: hidden; height: 500px; ">
+                <thead>
+                  <tr>
+                    <th scope="col">Leave Type</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">No. of Days</th>
+                    <th scope="col">Approval Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+             
+                  {% for x in leaves %}
+                  <tr>  
+                      <td>{{ x.Category}}</td> 
+                      <td>{{department}}</td> 
+                      <td>{{x.From }}</td>  
+                      <td>{{ x.to }}</td>  
+                      <td>{{x.Leave_count_Category}}</td>
+                      <td>  
+                          {% comment %} <a href="/edit/{{ employee.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>   {% endcomment %}
+                        
+                      
+                            {% if x.leave_status == 1 %}
+                            <div class="approve">
+                              <a type="button" class="btn btn-primary btn-lg">Approved</a>
+                            </div>  
+                            {% elif x.leave_status == 2 %}
+                            <div class="rejected">
+                              <a type="button" class="btn btn-primary btn-lg" href="/reviewEmployeeApplication/{{ x.Emp_ID }}/{{ x.id }}">Rejected</a>
+                          </div>
+                            {% else %}
+                            <div class="pending">
+                              <a type="button" class="btn btn-primary btn-lg">Pending</a>
+                            </div> 
+                            {% endif %}
+                      
+
+                  
+
+                      </td>  
+                  </tr>  
+                  {% endfor %}
+                            
+                </tbody>
+              </table>
+
+              <div style="text-align:center;">
+                <span class="">
+                {% if leaves.has_previous %}
+                <a href="?page={{ leaves.previous_page_number }}">Previous</a>
+                {% endif %}
+            
+                <span class="">
+                Page {{ leaves.number }} of {{ leaves.paginator.num_pages }}.
+                </span>
+                
+                
+                {% if leaves.has_next %}
+               
+                <a href="?Emp_ID={{Emp_ID}}&page={{ leaves.next_page_number }}">Next</a>
+                {% endif %}
+                </span>
+              
+        </section>
+        <script>
+            $(document).ready(function () {
+      $('#dtDynamicVerticalScrollExample').DataTable({
+        "scrollY": "50vh",
+        "scrollCollapse": true,
+      });
+      $('.dataTables_length').addClass('bs-select');
+    });
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </script>
+    
+</body>
+</html>

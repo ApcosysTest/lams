@@ -1,206 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leave Management System</title>
-    <link rel="stylesheet" href="{% static 'assets/css/adminDashboard.css'%}">
-    <link rel="stylesheet" href="{% static 'assets/css/calendar.css'%}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <!-- Bootstrap core CSS     -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta name="description" content="Sversity is the online edu. Tech division of Apcosys Private Limited and Apcosys is a software development and consultancy company with headquarter in Bangalore, India. Sversity online learning destination, offering high-quality courses from the world's best universities and institutions to learners everywhere. In the age of internet, do we really need to spend huge amount on getting degrees? One can equally quench his third for knowledge by joining online classes.">
+    <title>Leapss - Leave Management System</title>
+    {% load static %}
+    <link href="{% static 'assets\css\admin.css' %}" rel="stylesheet">
+    <link href="{% static 'assets\css\calendar.css' %}" rel="stylesheet">
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!-- Ionic Icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+ 
+    <!-- bootstrap Icon  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
-    <script>
-                
-          var dt = new Date();
-          //calendar
-          function renderDate(){
-          dt.setDate(1);
-          var day = dt.getDay();
+    <!-- Google Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,200,0,0" />
 
-          var endDate = new Date(
-            dt.getFullYear(),
-            dt.getMonth()+1,
-            0
-          ).getDate();
-
-          var prevDate = new Date(
-            dt.getFullYear(),
-            dt.getMonth(),
-            0
-          ).getDate();
-
-          var today = new Date();
-
-          var months = ['January','February','March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November','December'];
-
-          document.getElementById('month').innerHTML = months[dt.getMonth()];
-          document.getElementById('dateStr').innerHTML = dt.getFullYear(); 
-
-          var cells = "";
-
-          for(x=day; x>0; x--){
-            cells += "<li class = 'prevDate' style='pointer-events:none; opacity:0.6;'>" + (prevDate-x+1) +"</li>";
-          }
-
-          for(i=1;i<=endDate;i++){
-            if(i==today.getUTCDate() && dt.getMonth() == today.getMonth()){
-              cells += "<li class = 'active-day'>" + i +"</li>";
-            }
-            else{
-              cells += "<li>" + i +"</li>";
-
-            }
-          }
-          document.getElementsByClassName('days')[0].innerHTML = cells;
-
-          }
-
-          function moveDate(para){
-            if(para == 'prev'){
-              dt.setMonth(dt.getMonth()-1);
-            }
-            else if(para == 'next'){
-              dt.setMonth(dt.getMonth() +1);
-            }
-            
-            renderDate();
-          }
-    </script>
 </head>
-<body onload="renderDate();">
-  <header>
-    <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-      <div class="position-sticky">
-    <div class="list-group list-group-flush mx-3 mt-4">
-      <ul class="sidebar-nav " id="sidebar-nav">
-          <li class=" side align-items-left"data-bs-toggle="collapse">
-            <div class="logo d-flex align-items-center">
-              <img src="{% static 'assets/img/Apcosys.png'%}" alt="">
-              <span class="d-none d-lg-block">Apcosys Private Limited</span>
+<body id="body-pd">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white border-right position-sticky header" id="sidebar-wrapper">
+            <div class="justify-content-center">
+                <div class="leapss">
+                  <img src="{% static 'assets/img/logo.png'%}" alt="">
+                  <button class="btn toggle" id="sidebarClose"><i class="bi bi-x navToggle"></i>  </button>
+                </div>
             </div>
-          </li>
-        <li class="profile"data-bs-toggle="collapse">
-          <img src="{% static 'assets/img/user.png'%}" alt="" class="img-fluid rounded-circle">
-          <h6>{{request.session.Username}}</h6>
-      </li>
-        <li class="nav-menu" style="padding-top: 10%; "data-bs-toggle="collapse">
-          <ul id="components-nav" class="nav-content "data-bs-parent="#sidebar-nav"  >
-            <li  class="active"><a href="/adminDashboard"><span>Dashboard</span></a></li>
-            <li><a href="/leaveApplicationDetails"> <span>Employee Leave Details</span></a></li>
-            <li><a href="/employees"><span>Employee</span></a></li>
-  
-          </ul>
-      </li>
-    </ul>
+            <ul class="sidebar-nav " id="sidebar-nav">
+                <li class="profile"data-bs-toggle="collapse">
+                    <img src="{% static 'assets/img/user.png'%}" alt="" class="img-fluid rounded-circle">
+                    <h6>{{request.session.Username}}</h6>
+                </li>
+            </ul>
+            <div class="list-group list-group-flush" style="list-style:none; margin-top: 10%;">
+                <li ><a class="list-group-item active" href="/adminDashboard"><i class="bi bi-grid" style="margin-left: 20%; font-size:18px;"></i><span></i> <span>Home</span></a></li>
+                <li><a class="list-group-item " href="/leaveApplicationDetails"> <i class="bi bi-clock" style="margin-left: 20%;font-size:18px; "></i><span></i><span>Leave Section</span></a></li>
+                <li><a class="list-group-item " href="/employees"><i class="bi bi-people" style="margin-left: 20%;font-size:18px;"></i><span></i><span>Employee</span></a></li>
+                <li><a class="list-group-item " href="/companySetup"><i class="bi bi-gear"style="margin-left: 20%;font-size:18px;"></i><span></i><span>Company Setup</span></a></li>
+                <li><a class="list-group-item " href="/leavePolicySetting"><i class="bi bi-receipt"style="margin-left: 20%;font-size:18px;"></i><span></i><span>Leave Policy</span></a></li>
+             </div>
+             <div class="logout">
+              <a class="nav-link"href="/adminLogin"><span class="material-symbols-outlined"style="padding:5%;font-weight: 600; position:relative;top:3px;">
+                logout
+                </span><span style="font-family: 'Segoe UI', sans-serif; position:relative;bottom:3px; ">Log Out</span></a>
+            </div>
+            
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg  align-items-center justify-content-around border-bottom">
+                  
+                <div class="logo d-flex align-items-center">
+                  <button class="btn toggle " id="sidebarToggle"><i class="bi bi-list navToggle"></i></button>
+                    <!-- <img src="{% static 'assets/img/Apcosys.png'%}" alt=""> -->
+                    <span>Apcosys Private Limited</span>
+                  </div>
+                  <div class="input-group col-md-6">
+                    <form method="POST" action="/profilestatus">
+                      {% csrf_token %}
+                      <div class="row">
+                      <input class="form-control py-2 border-right-0 border" style=" width: 450px;" type="search" placeholder="Search Employee" id="example-search-input" name="Emp_ID">
+                      <span class="input-group-append">
+                          <button class="btn btn-outline-secondary border-left-0 border search" type="submit">
+                              <i class="bi bi-search"></i>
+                          </button>
+                      </span>
+                    </div>
+                    </form>
+                  </div>
+                <ul class="d-flex align-items-center header-nav">
+                    <li style="list-style: none;"class="addEmp">
+                        <a type="button" href="/addEmployee" class="btn "><span style="color:#fff;font-weight: 600; font-size: 20px; margin-top:3px;" class="material-symbols-outlined">
+                            add
+                            </span> <span class="text" style="font-family: 'Segoe UI', sans-serif; position: inherit;bottom: 3px;" >Add Employee</span></a>
+                    </li>
+                  </ul>
+            </nav>
+            <section class="section container pageClass bg-white rounded dashboard">
+                <div class="row">
+                  <div class="col-md-3">
+                    <a href="/totalEmployees" style="text-decoration: none;">
+                      <div class="card"style = "background-color: #009eff;border:none;">
+                          <div class="card-body">
+                              <p class="card-text">Total Employees</p>
+                              <h5 class="card-title" style="color: #ffffff;">{{dic.total_emp}}</h5>
+                          </div>
+                      </div>
+                    </a> 
+                  </div>
+                    <div class="col-md-3">
+                      <a href="/presentEmployees" style="text-decoration: none;">
+                        <div class="card" style = "background-color: #52D89C; border:none; ">
+                            <div class="card-body">
+                              <p class="card-text">Present Today</p>
+                              <h5 class="card-title" style="color: #ffffff;">{{dic.present_today}}</h5>
+                            </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="col-md-3">
+                      <a href="/onLeave" style="text-decoration: none;">
+                        <div class="card"style = "background-color: #FFC14E;border:none;">
+                            <div class="card-body">
+                              <p class="card-text">Leave/Absent Today</p>
+                              <h5 class="card-title" style="color: #ffffff;">{{dic.today_leave}}</h5>
+                            </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="col-md-3">
+                      <a href="/leaveApplicationDetails" style="text-decoration: none;">
+                        <div class="card">
+                            <div class="card-body"style = "background-color: #FF7B5D; border:none; border-radius:4px;">
+                              <p class="card-text">Leave Request</p>
+                              <h5 class="card-title" style="color: #ffffff;">{{dic.total_Leave}}</h5>
+                            </div>
+                        </div>
+                      </a>
+                    </div>  
+                </div>
+                <div class=" cal empInfo">
+                    <div class="clear justify-content-around row">
+                      <div class="col-md-1">
+                        <a class="btn left" href="/adminDashboard?{{ prev_month }}"> 
+                          <span style="color:#5b5b5b; margin-top: 5px; left: 420px;width: 12px;height: 20px;" class="material-symbols-outlined">
+                          arrow_back_ios
+                          </span>  </a>
+                      </div>
+                      <div class="col-md-6"></div>
+                      <div class="col-md-1">
+                        <a class="btn right" href="/adminDashboard?{{ next_month }}">
+                          <span style="color:#5b5b5b;margin-top: 5px;" class="material-symbols-outlined">
+                          arrow_forward_ios
+                          </span>  </a>
+                      </div>
+                      <div class="col-md-4"></div>
+                    </div>
+                  
+                  <div class="row" style="background-color:#fff;">
+                    <div class="col-md-8">
+                      {{ calendar }}
+                    </div>
+                      <div class="col-md-4  event">
+                        <div style="text-align:center">
+                          <a class="btn  eventHeader" href="{% url 'event_new' %}"><i style="font-size: 18px;" class="bi bi-plus"></i> Add Event</a>
+                          
+                        </div> 
+                        <div class="eve ">{{ event }}</div>  
+                        
+                      </div> 
+                      </div>
+                  </div>
+                </div>
+    
+            </section>
+        </div>
     </div>
-  </div>
-    </nav>
-    <!-- Sidebar -->
-  
-    <!-- Navbar -->
-    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-        <!-- Toggle button -->
-        <nav class="header-nav "></nav>
-                      <button
-                    class="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#sidebarMenu"
-      aria-controls="sidebarMenu"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-                      <!-- <a type="button" class="toggle" id="menu-toggle" ><i class="bi bi-list toggle-sidebar-btn"></i></a> -->
-                      <h3 class="greeting">Hi {{request.session.Username}}!</h3>
-                      
-                        <ul class="d-flex align-items-center header-nav">
-                          <li style="list-style: none;">
-                              <!-- <button type="button" class="btn logout"><i class="bi bi-box-arrow-right"></i> Logout</button> -->
-                              <a type="button" href="/adminLogin" class="btn logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
-                          </li>
-                        </ul>
-                      </nav>
-      </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
-  </header>
-   
-    <main id="main" class="main">
-        <section class="section container shadow p-3 mb-5 bg-white rounded dashboard">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card" style = "background-color: #009EFF;  padding-top:10px; padding-bottom:10px;">
-                        <div class="card-body">
-                          <a href="/addEmployee" style="text-decoration: none; color:#ffffff;"><p class="card-text">Register New<br> Employee</p></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card"style = "background-color: #52D89C;">
-                        <div class="card-body">
-                            <p class="card-text">Active Employees</p>
-                            <h5 class="card-title" style="color: #ffffff;">{{dic.total_emp}}</h5>
-                        </div>
-                    </div>
-
-                    
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body"style = "background-color: #FF7B5D;">
-                          <p class="card-text">Leave Request</p>
-                          <h5 class="card-title" style="color: #ffffff;">{{dic.total_Leave}}</h5>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-3">
-                    <div class="card"style = "background-color: #FFC14E;">
-                        <div class="card-body">
-                          <p class="card-text">On Leave Today</p>
-                          <h5 class="card-title" style="color: #ffffff;">{{dic.today_leave}}</h5>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="clearfix justify-content-between">
-              <a class="btn btn-info left" href="/adminDashboard?{{ prev_month }}"> Previous Month </a>
-              {% comment %} <a class="btn btn-info right" href="/event_new">Add Event</a> {% endcomment %}
-              <a class="btn btn-info right" href="/adminDashboard?{{ next_month }}"> Next Month </a>
-            </div>
-            <div class="row" style="background-color:#fff;">
-              <div class="col-md-8">
-                {{ calendar }}
-              </div>
-                <div class="col-md-4 event">
-                  <center>
-                    <div class="container" >
-                      <a class="btn btn-info right" href="{% url 'event_new' %}">Add Event</a>
-                    {{ event }}
-                    </div>
-                  </center>
-                </div>
-            </div>
-
-          </section>
-      
-        </main><!-- End #main -->
-        <script src="{% static 'assets/js/main.js'%}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function() {
+      {
+          $(".search").addClass("shadow-none");
+      }
+  });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="{% static 'assets\js\main.js' %}"></script>
+    <script>
+        AOS.init();
+    </script>
+
 </body>
 </html>

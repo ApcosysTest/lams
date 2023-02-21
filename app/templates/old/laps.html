@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management System</title>
+    <link rel="stylesheet" href="{% static 'assets/css/leaveApplication.css'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <!-- Bootstrap core CSS     -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+    
+
+</head>
+<body>
+
+  <header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+    <div class="list-group list-group-flush mx-3 mt-4">
+      <ul class="sidebar-nav " id="sidebar-nav">
+        <li class=" side align-items-left"data-bs-toggle="collapse">
+          <div class="logo d-flex align-items-center">
+            <img src="{% static 'assets/img/Apcosys.png'%}" alt="">
+            <span class="d-none d-lg-block">Apcosys Private Limited</span>
+          </div>
+        </li>
+      <li class="profile"data-bs-toggle="collapse">
+          <img src="{{emp_reg.Image.url}}" alt="" class="img-fluid rounded-circle">
+          <h6 class="greeting">Hi {{request.session.Name}}!</h6>
+      </li>
+      <li class="nav-menu" style="padding-top: 10%;"data-bs-toggle="collapse">
+        <ul id="components-nav" class="nav-content "data-bs-parent="#sidebar-nav"  >
+          <li ><a href="/sidebar"><i class="bi bi-grid"data-bs-toggle="collapse"></i><span>Home</span></a></li>
+          <li class="active"><a href="/leaveSection"><i class="bi bi-clock"data-bs-toggle="collapse"></i> <span>Leave Section</span></a></li>
+          <li><a href="/profileSetting"><i class="bi bi-gear"data-bs-toggle="collapse"></i><span>Profile </span></a></li>
+
+        </ul>
+      </li><!-- .nav-menu -->
+  </ul>
+    </div>
+  </div>
+    </nav>
+    <!-- Sidebar -->
+  
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <nav class="header-nav "></nav>
+                      <button
+        
+        style="left: 0;"              class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#sidebarMenu"
+      aria-controls="sidebarMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+                      <!-- <a type="button" class="toggle" id="menu-toggle" ><i class="bi bi-list toggle-sidebar-btn"></i></a> -->
+                      <h6 class="greeting">Hi {{request.session.Name}}!</h6>
+                      
+                        <ul class="d-flex align-items-center header-nav">
+                          <li style="list-style: none;">
+                              <button type="button" class="btn logout"href="/employeeLogin"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                              
+                          </li>
+                        </ul>
+                      </nav>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+    <main id="main" class="main">
+      
+        <section class="section container shadow p-3 mb-5 bg-white rounded dashboard">
+            <p style="color: #009eff;;">Leave Application</p>
+            <center>  
+    
+              {% if messages %}
+                      <div class ="messages" style="width: 300px;">
+          
+                  {% for message in messages  %}
+                          <div class="alert alert-success" role="alert">
+                              <strong style="font-size: 15px;"> {{message}}</strong> 
+                          </div>
+          
+                  {% endfor %}
+          
+                      </div>
+                      
+              {% endif %}
+      
+          </center> 
+            
+            <form action="/leaveApplication" method="post">
+              {% csrf_token %}
+                <div class="row form" style="padding: 4%; ">
+                    <div class="inputField" style="margin-bottom: 4% ;" >
+                        <select id="Category" name="Category" placeholder="Select Leave Category">
+                          <option value=""> - Select Leave Category - </option>
+                          <option value="Paid Leave">Paid Leave</option>
+                          <option value="Sick Leave">Sick Leave</option>
+                          <option value="Half DayLeave">Half DayLeave</option>
+                          <option value="Unpaid Leave">Unpaid Leave</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 leftDetails">
+                        <div class="date" >
+                            <input type="text" placeholder="From" id="From" name="From" style="margin-right: 40%" onfocus="(this.type='date')">
+                        </div>
+                        <div class="select">
+                            <select id="leave" name="leavedayCategory_From">
+                                <option value="fullDay"> Full Day </option>
+                                <option value="firstHalf">First Half</option>
+                                <option value="secondHalf">Seconodary Half</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 rightDetails" style="float: right;">
+                        <div class="date inputWithIcon"> 
+                            <input type="text" placeholder="To" id="to" name="to" style="margin-left: 10%"  onfocus="(this.type='date')">
+                        </div>
+                        <div class="select">
+                            <select id="leave" name="leavedayCategory_to" style="margin-left: 10%">
+                                <option value="fullDay"> Full Day </option>
+                                <option value="firstHalf">First Half</option>
+                                <option value="secondHalf">Seconodary Half</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <textarea type="text" placeholder="Reason" maxlength="200" minlength="50" id="Reason" name="Reason"></textarea>
+                    </div>
+                       
+                      
+                      <input type="hidden"  id="Emp_ID" name="Emp_ID" value="{{request.session.Emp_ID}}">
+
+
+                      <input type="hidden"  name="Leave_count_Category" id="Leave_count_Category">
+
+                      <input type="hidden"  name="Date" id="Date" value="{{current_date}}">
+         
+                    <div class="row buttons">
+                      <div class="col-md-6">
+                        {% comment %} <div class="card">          
+                          <div class="card-body">
+                            <!-- <input id="" type="file"> -->
+                            <input id="fileUp" type="file" >
+                            <a id="upload_link" style="text-decoration: none;" href="javascript:void(0)"><p class="card-text"><u>Upload Document</u><i style=" margin-left: 50%;" class="bi bi-file-earmark-arrow-up"></i></p></a>
+                          </div>
+                        </div>{% endcomment %}
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row" style="margin-top:10%; margin-left: 10%;">
+                          <div class="col-md-3">
+                            <a type="button" class="btn btn-primary btn-lg cancelButton" href = "/sidebar">Cancel</a>
+                          </div>
+                          <div class="col-md-3">
+                            <button type="Submit" class="btn btn-primary btn-lg  submitButton" >Submit</button>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    
+                    
+                </div>
+            </form>
+            
+
+            
+        </section>
+        <script>
+          $("#upload_link").click(function(){
+         $("#fileUp").trigger('click');
+     });
+         </script>
+        
+         <script>
+          document.getElementById('From').addEventListener('change', function() {
+            console.log(this.value);
+              var From = document.getElementById('From').value
+              var to = document.getElementById('to').value
+
+              var date1 = new Date(From);
+              var date2 = new Date(to);
+              var Difference_In_Time = date2.getTime() - date1.getTime();
+
+              var Difference_In_Days = (Difference_In_Time / (1000 * 3600 * 24))+1;
+       
+              document.getElementById('Leave_count_Category').value = Difference_In_Days;
+              console.log(Difference_In_Days)
+            });
+         
+            document.getElementById('to').addEventListener('change', function() {
+              console.log(this.value);
+              var From = document.getElementById('From').value
+              var to = document.getElementById('to').value
+
+              var date1 = new Date(From);
+              var date2 = new Date(to);
+              var Difference_In_Time = date2.getTime() - date1.getTime();
+
+              var Difference_In_Days = (Difference_In_Time / (1000 * 3600 * 24))+1;
+       
+              document.getElementById('Leave_count_Category').value = Difference_In_Days;
+              console.log(Difference_In_Days) 
+            });
+
+            </script> 
+
+            <script>
+              $(function () {
+                $("#date").datepicker({ minDate: 0 });
+            });
+
+            </script>
+        
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </script>
+    
+</body>
+</html>

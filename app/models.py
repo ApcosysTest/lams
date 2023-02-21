@@ -1,21 +1,40 @@
 from django.db import models
-from django.contrib.auth.hashers import make_password
 from django.urls import reverse
-from django.contrib.auth.models import User
 
 class Admin_Login(models.Model):
     Username = models.CharField(max_length=20)
-    Password = models.CharField(max_length=20)
-
+    Password = models.CharField(max_length=20) 
     
     class Meta:  
         # managed = False
         db_table = "admin_Login"
-
-    
         
 # Create your models here.
 
+class CompanySetup(models.Model):
+    Username = models.CharField(max_length=20,blank = True,null=True)
+    company_name = models.CharField(max_length=500,blank = True,null=True)
+    email = models.EmailField(max_length=500,blank=True,unique=True) 
+    website = models.CharField(max_length=500,blank = True,null=True)
+    telephone = models.CharField(max_length=500,blank=True,null=True)
+    telephone1 = models.CharField(max_length=500,blank=True,null=True)
+    telephone2 = models.CharField(max_length=500,blank=True,null=True)
+    Address = models.CharField(max_length=500,blank = True,null=True)
+    zip = models.CharField(max_length=500,blank = True,null=True)
+    city = models.CharField(max_length=500,blank = True,null=True)
+    state = models.CharField(max_length=500,blank = True,null=True)
+    country = models.CharField(max_length=500,blank = True,null=True)
+    companyBranch = models.CharField(max_length=500,blank = True,null=True)
+    department1 = models.CharField(max_length=500,blank = True,null=True)
+    department2 = models.CharField(max_length=500,blank = True,null=True)
+    department3 = models.CharField(max_length=500,blank = True,null=True)
+    department4 = models.CharField(max_length=500,blank = True,null=True)
+    department5 = models.CharField(max_length=500,blank = True,null=True)
+    company_status = models.IntegerField(default=1,blank=True,null=True)
+    
+    class Meta:
+        db_table = 'company_setup'
+        
 class Addemployee(models.Model):
     Name = models.CharField(max_length=200)
     Contact = models.CharField(max_length=100)
@@ -59,35 +78,71 @@ class Addemployee(models.Model):
             return True
 
         return  False
-        
+
+     
         
 class Leave_App(models.Model):
-    Date = models.DateField(auto_now=True)
-    Category = models.CharField(max_length=200)          
-    From = models.CharField(max_length=200) 
-    to = models.CharField(max_length=200 )
-    leavedayCategory_From = models.CharField(max_length=200)  
-    leavedayCategory_to = models.CharField(max_length=200)  
-    Reason = models.CharField(max_length=250)
+    Date = models.DateField(auto_now=True,blank = True,null=True)
+    Name = models.CharField(max_length=200,blank = True,null=True)
+    Category = models.CharField(max_length=200,blank = True,null=True)          
+    From = models.CharField(max_length=200,blank = True,null=True) 
+    to = models.CharField(max_length=200,blank = True,null=True)
+    leavedayCategory_From = models.CharField(max_length=200,blank = True,null=True)  
+    leavedayCategory_to = models.CharField(max_length=200,blank = True,null=True)  
+    Reason = models.CharField(max_length=250,blank = True,null=True)
     Emp_ID = models.CharField(max_length=200,blank = True,null=True) 
     Leave_count_Category = models.CharField(max_length=2,blank = True,null=True) 
     leave_status = models.IntegerField(default=0,blank = True,null=True)
+    department = models.CharField(max_length=200,blank = True,null=True)
+    Designation = models.CharField(max_length=200,blank = True,null=True)
     comments = models.CharField(max_length=500,blank = True,null=True)
+    # Absentemp_status = models.IntegerField(default=1,blank = True,null=True) 
     
 
+    
+    
+    
     class Meta:  
         db_table = "leave"  
 
 
+
+class Leave_Policy(models.Model):
+    Username = models.CharField(max_length=20,blank = True,null=True)
+    leavepolicy = models.CharField(max_length=50000)
+    leave_status =  models.IntegerField(default=1,blank = True,null=True)   
+    
+    class Meta:  
+        db_table = "leavepolicy"  
+        
+        
+class Absent_emp(models.Model):
+    Date = models.DateField(auto_now=True)
+    Name = models.CharField(max_length=200) 
+    Emp_ID = models.CharField(max_length=200,blank = True,null=True)          
+    department = models.CharField(max_length=200)
+    Designation = models.CharField(max_length=200)
+      
+    class Meta:  
+        db_table = "absent_emp"
+
     
 class Event(models.Model):
+    CATEGORY_CHOICES = [ ('Birthday', 'Birthday'), ('Public Holiday', 'Public Holiday'), ('Event', 'Event'),]
     title = models.CharField(max_length=200)
     description = models.TextField()
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     date = models.DateField()
 
     @property
     def get_html_url(self):
         url = reverse('event_edit', args=(self.id,))
-        return f'<a href="{url}"> {self.title} </a>'
+        return f'<a href="{url}"> <span class ="options" style="  margin-top:1px;color:#707070;  " > <img class="img1"style="width:20px; height:20px;" src="../static/assets/img/edit.png" alt="edit"/> </span></a><br> '
+    @property
+    def deleteEvent(self):
+        urls = reverse('event_delete', args=(self.id,))
+        return f'<br><a href="{urls}"> <span class ="options" style="  margin-top:20px;color:#707070;" > <img class="img2"style="width:20px; margin-top:10px;color:#707070;"src="../static/assets/img/delete.png" alt="delete"/> </span></a>'
+    
+
 
         

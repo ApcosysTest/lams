@@ -1,5 +1,5 @@
 from django import forms  
-from .models import Addemployee , Event
+from .models import Addemployee , Event , CompanySetup , Absent_emp , Leave_Policy
 from django.forms import ModelForm, DateInput
 
 class DateInput(forms.DateInput):
@@ -12,11 +12,32 @@ class AddemployeeForm(forms.ModelForm):
         fields = "__all__"  
         
     widgets = {
-            'Date':DateInput(),
             'D_O_B': DateInput(),
             'Date_of_join': DateInput(), 
         } 
     
+from .models import CompanySetup 
+
+class CompanySetupForm(forms.ModelForm):  
+    class Meta:  
+        model = CompanySetup  
+        fields = "__all__"
+        
+
+from .models import Leave_Policy 
+
+class Leave_PolicyForm(forms.ModelForm):  
+    class Meta:  
+        model = Leave_Policy  
+        fields = "__all__"
+        
+               
+from .models import Absent_emp 
+        
+class Absent_empForm(forms.ModelForm):  
+    class Meta:  
+        model = Absent_emp  
+        fields = "__all__"
     
 from .models import Admin_Login 
 
@@ -35,13 +56,15 @@ class DateInput(forms.DateInput):
 class Leave_AppForm(forms.ModelForm):  
     class Meta:  
         model = Leave_App  
-        fields = "__all__"  
+        fields = "__all__" 
+     
         
     widgets = {
+            'Date':DateInput(),
             'From': DateInput(),
             'to': DateInput(), 
         } 
-    
+
 
 
 class EventForm(ModelForm):

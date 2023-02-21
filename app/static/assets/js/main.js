@@ -1,10 +1,23 @@
+// Sidebar Toggle 
+window.addEventListener('DOMContentLoaded', event => {
 
-  /**
-   * Sidebar toggle
-   */
-  if (select('.toggle-sidebar-btn')) {
-    on('click', '.toggle-sidebar-btn', function(e) {
-        console.log("hbbib")
-      select('body').toggle('toggle-sidebar')
-    })
+  // Toggle the side navigation
+  const sidebarToggle = document.body.querySelector('#sidebarToggle');
+  const sidebarClose = document.body.querySelector('#sidebarClose');
+  if (sidebarToggle) {
+    //   if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+    //       document.body.classList.toggle('sb-sidenav-toggled');
+    //   }
+      sidebarToggle.addEventListener('click', event => {
+          event.preventDefault();
+          document.body.classList.toggle('sb-sidenav-toggled');
+        //   localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+      });
+      sidebarClose.addEventListener('click', event => {
+          event.preventDefault();
+          document.body.classList.toggle('sb-sidenav-toggled');
+        //   localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+      });
   }
+
+});
