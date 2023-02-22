@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'crud.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.postgresql',  
-        'NAME': 'lams',  
+        'NAME': 'lams',
         'USER':'postgres',  
         'PASSWORD':'Apcosys001',  
-        'HOST':'db-lams.c66eam8fjckg.ap-south-1.rds.amazonaws.com',  
+        'HOST':'db-lames.c66eam8fjckg.ap-south-1.rds.amazonaws.com',  
         'PORT':'5432'  
     } 
 }  
