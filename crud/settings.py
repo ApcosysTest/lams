@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',  
         'NAME': 'lams',
         'USER':'postgres',  
-        'PASSWORD':'Apcosys001',  
+        'PASSWORD':'Apcosys0001',  
         'HOST':'db-lames.c66eam8fjckg.ap-south-1.rds.amazonaws.com',  
         'PORT':'5432'  
     } 
