@@ -578,7 +578,7 @@ border-radius: 5px;
 .modal-footer button:hover{
   background-color: var(--main-color); 
 }
-input[type="text"],  input[type='tel'],  input[type='number'], input[type='email'],input[type = 'password'] { 
+input[type="text"],  input[type='tel'],  input[type='number'], input[type='email'],input[type = 'password'] ,select{ 
   width: 340px;
   height: 50px;
   font-size: 18px;
@@ -589,8 +589,8 @@ input[type="text"],  input[type='tel'],  input[type='number'], input[type='email
   padding: 8px; 
   padding-left: 3%;
   box-sizing: border-box;
-  margin-bottom: 5%;
-} 
+  margin-bottom: 5% !important; 
+}  
 #previous{
   margin-left: 7%;
 }
@@ -618,7 +618,7 @@ height: 50px;
   border: 1px solid var(--main-color); 
   padding: 5% 14%;
   color: #fff; 
-}
+} 
 .companySetup h5{ 
   margin-bottom: 2.5%;
   margin-left: 8%; 
