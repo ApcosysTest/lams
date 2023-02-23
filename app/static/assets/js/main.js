@@ -31,7 +31,7 @@ $('textarea').keyup(function() {
     
   current.text(characterCount);
   
-  if (characterCount >= 50) {
+  if (characterCount >= 30) {
     maximum.css('color', '#52D89C');
     current.css('color', '#52D89C');  
   } else {
