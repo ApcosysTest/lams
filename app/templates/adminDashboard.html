@@ -38,12 +38,10 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
         <div class="border-end bg-white border-right position-sticky header" id="sidebar-wrapper">
-            <div class="justify-content-center">
-                <div class="leapss">
-                  <img src="{% static 'assets/img/logo.png'%}" alt="">
-                  <button class="btn toggle" id="sidebarClose"><i class="bi bi-x navToggle"></i>  </button>
-                </div>
-            </div>
+          <div class="justify-content-center">
+            <div class="leapss"><img src="{% static 'assets/img/logo.png'%}" alt="">
+            <button class="btn" id="sidebarClose"><i class="bi bi-x navToggle"></i>  </button></div>
+        </div>
             <ul class="sidebar-nav " id="sidebar-nav">
                 <li class="profile"data-bs-toggle="collapse">
                     <img src="{% static 'assets/img/user.png'%}" alt="" class="img-fluid rounded-circle">
@@ -95,11 +93,11 @@
                     </li>
                   </ul>
             </nav>
-            <section class="section container pageClass bg-white rounded dashboard">
+            <section class="section container   bg-white rounded dashboard">
                 <div class="row">
                   <div class="col-md-3">
                     <a href="/totalEmployees" style="text-decoration: none;">
-                      <div class="card"style = "background-color: #009eff;border:none;">
+                      <div class="card cardd"style = "background-color: #009eff;border:none;">
                           <div class="card-body">
                               <p class="card-text">Total Employees</p>
                               <h5 class="card-title" style="color: #ffffff;">{{dic.total_emp}}</h5>
@@ -109,7 +107,7 @@
                   </div>
                     <div class="col-md-3">
                       <a href="/presentEmployees" style="text-decoration: none;">
-                        <div class="card" style = "background-color: #52D89C; border:none; ">
+                        <div class="card cardd" style = "background-color: #52D89C; border:none; ">
                             <div class="card-body">
                               <p class="card-text">Present Today</p>
                               <h5 class="card-title" style="color: #ffffff;">{{dic.present_today}}</h5>
@@ -119,7 +117,7 @@
                     </div>
                     <div class="col-md-3">
                       <a href="/onLeave" style="text-decoration: none;">
-                        <div class="card"style = "background-color: #FFC14E;border:none;">
+                        <div class="card cardd"style = "background-color: #FFC14E;border:none;">
                             <div class="card-body">
                               <p class="card-text">Leave/Absent Today</p>
                               <h5 class="card-title" style="color: #ffffff;">{{dic.today_leave}}</h5>
@@ -127,9 +125,9 @@
                         </div>
                       </a>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 ">
                       <a href="/leaveApplicationDetails" style="text-decoration: none;">
-                        <div class="card">
+                        <div class="card cardd" >
                             <div class="card-body"style = "background-color: #FF7B5D; border:none; border-radius:4px;">
                               <p class="card-text">Leave Request</p>
                               <h5 class="card-title" style="color: #ffffff;">{{dic.total_Leave}}</h5>

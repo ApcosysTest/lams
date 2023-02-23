@@ -43,6 +43,11 @@ textarea{
   margin-top: 10%;
   box-shadow: 3px 5px 3px rgba(82, 63, 105, 0.2);
 
+}
+#the-count {
+  float: right;
+  padding: 0.1rem 1rem 0 0;
+  font-size: 0.875rem;
 } 
 #fileUp{
 display: none;
@@ -63,9 +68,9 @@ box-shadow: 3px 5px 3px rgba(82, 63, 105, 0.2);
   margin-bottom: 8%;
   margin-top: 8%;
 } 
-.dashboard form .buttons .card{
-width: 92%;
+.dashboard form .buttons .card{ 
 margin-top: 8%;
+margin-left: 5%;
 box-shadow: 3px 5px 3px rgba(82, 63, 105, 0.2);
 padding: 0%;
 }
@@ -83,7 +88,7 @@ border-radius: 3px;
 color: #ffffff;
 background-color: #009eff;
 box-shadow: 3px 5px 3px rgba(82, 63, 105, 0.2);  
-margin-left: 250%;
+margin-left: 270%;
 }
 .dashboard form .buttons .cancelButton:hover{
 

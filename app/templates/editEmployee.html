@@ -56,7 +56,9 @@
                 <li><a class="list-group-item " href="/leaveApplicationDetails"> <i class="bi bi-clock" style="margin-left: 20%;font-size:18px; "></i><span></i><span>Leave Section</span></a></li>
                 <li><a class="list-group-item active" href="/employees"><i class="bi bi-people" style="margin-left: 20%;font-size:18px;"></i><span></i><span>Employee</span></a></li>
                 <li><a class="list-group-item " href="/companySetup"><i class="bi bi-gear"style="margin-left: 20%;font-size:18px;"></i><span></i><span>Company Setup</span></a></li>
-             </div>
+                <li><a class="list-group-item " href="/leavePolicySetting"><i class="bi bi-receipt"style="margin-left: 20%;font-size:18px;"></i><span></i><span>Leave Policy</span></a></li>
+                
+            </div>
              <div class="logout">
               <a class="nav-link"href="/adminLogin"><span class="material-symbols-outlined"style="padding:5%;font-weight: 600; position:relative;top:3px;">
                 logout
@@ -67,7 +69,7 @@
         <!-- Page content wrapper-->
         <div id="page-content-wrapper">
             <!-- Top navigation-->
-            <nav class="navbar navbar-expand-lg  align-items-center justify-content-around border-bottom">
+            <nav class="navbar navbar-expand-lg  align-items-center justify-content-between border-bottom">
                 <!-- <div class="container">
                     <button class="btn" id="sidebarToggle"><span class="navbar-toggler-icon"></span></button>
                 </div> -->
@@ -76,20 +78,7 @@
                     <button class="btn toggle " id="sidebarToggle"><i class="bi bi-list navToggle"></i></button>
                     <!-- <img src="{% static 'assets/img/Apcosys.png'%}" alt=""> -->
                     <span>Apcosys Private Limited</span>
-                  </div>
-                  <div class="input-group col-md-6">
-                    <form method="POST" action="/profilestatus">
-                      {% csrf_token %}
-                      <div class="row">
-                      <input class="form-control py-2 border-right-0 border" style=" width: 450px;" type="search" placeholder="Search Employee" id="example-search-input" name="Emp_ID">
-                      <span class="input-group-append">
-                          <button class="btn btn-outline-secondary border-left-0 border search" type="submit">
-                              <i class="bi bi-search"></i>
-                          </button>
-                      </span>
-                    </div>
-                    </form>
-                  </div>
+                  </div> 
                 <ul class="d-flex align-items-center header-nav">
                     <li style="list-style: none;"class="addEmp">
                         <a type="button" href="/addEmployee" class="btn "><span style="color:#fff;font-weight: 600; font-size: 20px; margin-top:3px;" class="material-symbols-outlined">

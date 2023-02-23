@@ -21,3 +21,22 @@ window.addEventListener('DOMContentLoaded', event => {
   }
 
 });
+
+$('textarea').keyup(function() {
+    
+  var characterCount = $(this).val().length,
+      current = $('#current'),
+      maximum = $('#maximum'),
+      theCount = $('#the-count');
+    
+  current.text(characterCount);
+  
+  if (characterCount >= 50) {
+    maximum.css('color', '#52D89C');
+    current.css('color', '#52D89C');  
+  } else {
+    maximum.css('color','#FF7B5D'); 
+  }
+  
+      
+});

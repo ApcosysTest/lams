@@ -106,8 +106,7 @@ nav {
     width: 150px;
 }
 .logout{
-  margin: auto 25%;
-  margin-top: 20%;
+  margin: 5% 25%; 
   align-items: center;
 }
 .logout a{
@@ -276,15 +275,26 @@ nav {
 body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   margin-left: 0;
 }
-  
+.dard{
+  margin:1%;
+  margin-left: 1.5%;
+}
 
-.card{
-  padding: 0%;
+.card{ 
   border: none;
   border-radius: 4px;
-  width: 195px;
-  height: 99px;
-  margin: 5% 12%;
+  width: 170px;
+  height: 80px;
+  margin: 9% ; 
+  margin-top: 6%;
+} 
+.cardd{ 
+  padding: 0% !important;
+  border: none !important;
+  border-radius: 4px !important;
+  width: 195px !important;
+  height: 80px !important;
+  margin: 5% 12% !important;
 }
 .card-body{
   padding: 0%;
@@ -742,7 +752,7 @@ height: 50px;
   display: none;
 }
 
-@media(max-width:400px){
+@media(max-width:576px){
     .logo img{
         height: 80px;
         width: 100px;
