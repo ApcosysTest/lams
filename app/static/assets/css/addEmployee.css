@@ -110,23 +110,23 @@ border-color: #009eff;
 
 
 
-form .add {
-margin: 2%;
+form .add { 
 background-color: #009eff;
+margin-left: 3%;
 padding: 10px 42px 10px 50px;
 }
 
-form .uploadButton{
-  margin: 2%;
+form .uploadButton{ 
+  position: relative;
+  top: -10px;
   background-color: #009eff; 
-  padding: 10px 42px 10px 50px;
+  padding: 8px 60px 8px 60px ;
 }
 
-form .cancel {
-margin: 2%;
-margin-right: 25%;
-padding: 10px 40px 10px 40px;
+form .cancel { 
+margin-right: 25%;   
 border-color: #009eff;
+padding: 10px 35px 10px 35px;
 }
 
 form .add:hover{

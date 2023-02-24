@@ -89,15 +89,15 @@
                                     <div class="inputField">
                                         <input type="text" placeholder="Name" id="Name" name="Name"  value="{{ employee.Name }}">
                                     </div>
+                                    <div class="date" >
+                                      <input type="text" placeholder="DOB"style="margin-right: 40%" onfocus="(this.type='date')" id="D_O_B" name="D_O_B"  value="{{ employee.D_O_B|date:'Y-m-d' }}">
+                                    </div>
                                     <div>
                                         <input type="tel" placeholder="Phone Number" id="Contact" name="Contact"  value="{{ employee.Contact }}">
                                     </div>
                                     
                                     <div>
                                         <input type="text" placeholder="Address" id="Address" name="Address"  value="{{ employee.Address }}">
-                                    </div>
-                                    <div class="date" >
-                                      <input type="text" placeholder="DOB"style="margin-right: 40%" onfocus="(this.type='date')" id="D_O_B" name="D_O_B"  value="{{ employee.D_O_B|date:'Y-m-d' }}">
                                     </div>
                                     <div class="date" >
                                       <input type="text" placeholder="DOJ"style="margin-right: 40%" onfocus="(this.type='date')" id="Date_of_join" name="Date_of_join"    value="{{ employee.Date_of_join|date:'Y-m-d' }}">

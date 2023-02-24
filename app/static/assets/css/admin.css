@@ -587,8 +587,7 @@ input[type="text"],  input[type='tel'],  input[type='number'], input[type='email
   font-family: 'Segoe UI', sans-serif;    
   padding: 8px; 
   padding-left: 3%;
-  box-sizing: border-box;
-  margin-bottom: 5% !important; 
+  box-sizing: border-box; 
 }  
 #previous{
   margin-left: 7%;
