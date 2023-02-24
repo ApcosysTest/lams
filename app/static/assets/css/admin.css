@@ -214,8 +214,7 @@ nav {
   margin-left: -17rem;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.22);
   transition: margin 0.25s ease-out;
-}
-
+} 
 #sidebar-wrapper h6{
   font-size: 18px;
   color: #009eff;

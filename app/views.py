@@ -80,23 +80,7 @@ def adminLogin(request):
             return render(request,"adminLogin.html")
 
     return render(request,"adminLogin.html")
-
-# def admin(request):
-#     return render(request,'admin.html')
-# def employeeDashboard(request):
-#     return render(request,'employeeDashboard.html')
-# def totalEmployees(request):
-#     return render(request,'totalEmployees.html')
-# def totalEmployeeDetails(request):
-#     return render(request,'totalEmployeeDetails.html')
-# def presentEmployees(request):
-#     return render(request,'presentEmployees.html')
-# def onLeave(request):
-#     return render(request,'onLeave.html')
-# def companySetup(request):
-#     return render(request,'companySetup.html')
-# def employeeProfile(request):
-#     return render(request,'employeeProfile.html')
+ 
 
 def companySetup(request):  
     
@@ -1616,15 +1600,14 @@ def leaveApplication(request):
 def leavePolicy(request):
     if request.session.has_key('Name'):
         if request.method == 'GET':
+            print(Leave_Policy.objects,".,.,.,.,")
             Name = request.session['Name']
-            
+            print(Name)
             emp_reg = Addemployee.objects.get(Name=Name)
-            print(emp_reg)
-            
-            Username = request.session['Username']
+            print(emp_reg)  
     
             try:
-                leave = Leave_Policy.objects.get(Username=Username)
+                leave = Leave_Policy.objects.get(Username="1")
             except Leave_Policy.DoesNotExist:
                 leave = None
             print(leave)

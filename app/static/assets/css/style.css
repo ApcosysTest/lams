@@ -8,32 +8,13 @@
     .navbar{
         height: 100px;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-    }
-    .logo{
-        width: 100%;
-    }
-    .logo img{
-        margin-left: 7%;
-        margin-right: 0.5%;
-        height: 70px;
-        width: 95px;
-    }
-    .logo a{
-        text-decoration: none;
-        color: #009eff;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        font-size: 28px;
-        color: #009eff;
-    }
+    } 
      .admin .adminButton{
-        border-color: #009eff; 
-        margin-top: 20%;
-        margin-left: 1500%;
+        border-color: #009eff;  
         height: 50px;
         color: #009eff;
-        padding-left: 60px;
-        padding-right: 60px;
+        padding-left: 30px;
+        padding-right: 30px;
         border-radius: 3px;
     }
     .admin a:hover{  
@@ -81,17 +62,18 @@
     }
     .content{
       position: relative;
-      height: 70vh;
+      height: 100vh; 
+      background-image: url('static/assets/img/bg-img.jpg') no-repeat fixed; 
     }
     .container-centered-items{
       position: absolute;
-      top: 50%;
+      top: 33%;
       left: 0;
       right: 0;
     }
     .login{
         margin: auto;
-        margin-top:8%;
+        margin-top:6%;
         width: 30%;
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
         padding: 10px;
@@ -201,7 +183,23 @@
     tr td{
         font-variant: petite-caps;
     }
-    
+    #footer {
+        width: 100%;
+        bottom : 0;
+        height:25px;
+        background-color: #009eff;
+        color: #fff;
+        font-size: 12px ;
+        
+        position: fixed;
+      }
+      #footer p{
+        display: flex; 
+        justify-content: center;
+        padding-left: 2%;
+        align-items: center; 
+        padding-top: 4px;
+      } 
 /* Laptop View  */
 @media (max-width: 1199.98px) {
     .logo{

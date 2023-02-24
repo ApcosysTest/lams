@@ -26,17 +26,18 @@
 <body>
     <section class="content">
             <!-- Navigation -->
-                <nav class="navbar navbar-light">
-                      <div class="container-fluid">
-                            <!-- <span class="sub-title"><a class="navbar-brand" href="#"><img src="./assets/img/Apcosys.png" alt="Logo"><h2>Apcosys Private Limited</h2></span></a> -->
-                            <div class="logo ">
-                                <a href="#" class="logo d-flex align-items-center">
-                                    <img src="{% static 'assets/img/Apcosys.png'%}" alt="Apcosys Logo">
-                                    Apcosys Private Limited
-                                </a>
-                            </div>
-                      </div><!-- /.container-fluid -->
-                </nav>
+            <nav class="navbar navbar-expand-lg  align-items-center justify-content-between border-bottom">
+                <div class="container">
+                      <!-- <span class="sub-title"><a class="navbar-brand" href="#"><img src="./assets/img/Apcosys.png" alt="Logo"><h2>Apcosys Private Limited</h2></span></a> -->
+                       
+                              <div >
+                                  <a href="/" class="  d-flex align-items-center">
+                                      <img width="200px" src="{% static 'assets/img/logo.png'%}" alt="Apcosys Logo"> 
+                                  </a>
+                              </div>    
+                      </div>
+                </div><!-- /.container-fluid -->
+          </nav>
             <!-- /Naivagtion -->
 
             <div class="container" style="padding-top: 25px;">
@@ -74,6 +75,11 @@
                 </div>
             </div>
      </section>
+     <div id="footer" class="justify-content-between">
+        <div class="row">
+            <p>From the house of <b> &nbsp;APCOSYS</b></p> 
+        </div>
+    </div>
 </body>
     <!--   Core JS Files   -->
     <script src="{% static 'assets/js/main.js'%}"></script>
