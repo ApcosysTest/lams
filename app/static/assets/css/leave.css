@@ -147,8 +147,7 @@ nav {
     color: #fff;
 }   
 
-#leavePolicy{
-  color: #a7a7a7;
+#leavePolicy{ 
   padding: 2%;
   font-size:20px;
   border: 1px solid #a7a7a7;
@@ -293,7 +292,7 @@ input[type="text"],   input[type='number']{
   padding-left: 3%;
   margin: 8% 0% 8% 1%;
   box-sizing: border-box; 
-}   
+}    
 label{ 
     margin: 8%  0% 8% 15% !important;
 }
