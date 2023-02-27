@@ -230,7 +230,7 @@
 
 }
 /* Mobile View  */
-@media (max-width: 376px) {
+@media (max-width: 576px) {
     .login{
         margin: auto;
         margin-top:20%;

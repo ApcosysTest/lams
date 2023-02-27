@@ -141,7 +141,7 @@
     display:flex;
     height:100%;
     width:1px; 
-    border:2px solid #a7a7a7;
+    border:2px solid #eb5353;
     border-radius: 5px;
     margin:0px 
   } 
@@ -264,7 +264,7 @@
   }
 
   
-@media (max-width: 400px) {
+@media (max-width: 576px) {
   .calendar th{
     font-size: 0.6rem;
   } 

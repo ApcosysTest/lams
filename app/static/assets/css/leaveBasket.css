@@ -95,7 +95,7 @@
   color: #009eff;
   background-color: #ffffff;
 }
-@media (max-width: 360px) {
+@media (max-width: 576px) {
   
 .basket1 a{
   margin-left: 0px;

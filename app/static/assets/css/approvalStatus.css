@@ -1,5 +1,5 @@
   
-@media (max-width: 360px) {
+@media (max-width: 576px) {
 #main {
   padding: 20px;
   margin-left: 0;
@@ -241,7 +241,7 @@ background-color: #52D89C;
       #search{
         padding-left: 6%;
       }
-@media(max-width: 360px){
+@media(max-width: 576px){
   
 #search{
   padding-left: 0px;

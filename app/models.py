@@ -141,7 +141,7 @@ class Event(models.Model):
     @property
     def deleteEvent(self):
         urls = reverse('event_delete', args=(self.id,))
-        return f'<br><a href="{urls}"> <span class ="options" style="  margin-top:20px;color:#707070;" > <img class="img2"style="width:20px; margin-top:10px;color:#707070;"src="../static/assets/img/delete.png" alt="delete"/> </span></a>'
+        return f'<br><a data-bs-toggle="modal" data-bs-target="#sureModal  "> <span class ="options" style="  margin-top:20px;color:#707070;" > <img class="img2"style="width:20px; margin-top:10px;color:#707070;"src="../static/assets/img/delete.png" alt="delete"/> </span></a><div class="modal fade" id="sureModal" tabindex="-1" aria-labelledby="sureModalLabel" aria-hidden="true"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"><h5 class="modal-title" id="sureModalLabel">Are you Sure?</h5></div> <div class="modal-footer"><button type="button" style="background-color:red;" class="btn btn-danger" data-bs-dismiss="modal">No</button><a href="{urls} "   class="btn btn-primary">Yes</a></div></div></div></div>'
     
 
 

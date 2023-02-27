@@ -589,6 +589,9 @@ input[type="text"],  input[type='tel'],  input[type='number'], input[type='email
   padding-left: 3%;
   box-sizing: border-box; 
 }  
+.leaves input [type="text"]{
+  width:  100px ;
+}
 #previous{
   margin-left: 7%;
 }

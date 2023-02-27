@@ -108,7 +108,7 @@ background-color: #ffffff;
 
 margin-left: 50%;
 }
-@media (max-width: 400px) {
+@media (max-width: 576px) {
   .rightDetails input,.rightDetails .select{
     margin-left: 0%;
   }

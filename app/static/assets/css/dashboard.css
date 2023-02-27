@@ -178,7 +178,7 @@ margin-left: 10%;
 padding-top: 6%;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 576px) {
 
 .userDetails{
 margin-left: 0%;

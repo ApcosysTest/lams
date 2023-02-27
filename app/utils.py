@@ -19,13 +19,13 @@ class Calendar(HTMLCalendar):
 		bgColor=""
 		for event in events_per_day: 
 			if event.category == "Birthday": 
-				d += f'<a style ="background-color : #ffc14e; margin:2px; display:inline-block;border-radius:50px;width:6px; height:6px;" >&nbsp;</a>'
+				d += f'<a style ="background-color : #ffc14e; margin:2px; display:inline-block;border-radius:50px;width:7px; height:7px;" >&nbsp;</a>'
 			elif event.category == "Event":
-				d += f'<a style ="background-color : #009eff;margin:2px; display:inline-block;border-radius:50px;width:6px;height:6px;">&nbsp;</a>'
+				d += f'<a style ="background-color : #009eff;margin:2px; display:inline-block;border-radius:50px;width:7px;height:7px;">&nbsp;</a>'
 			elif event.category == "Public Holiday":
-				d += f'<a style ="background-color : #a7a7a7;margin:2px; display:inline-block;border-radius:50px;width:6px;height:6px;">&nbsp;</a>'
+				d += f'<a style ="background-color : #eb5353;margin:2px; display:inline-block;border-radius:50px;width:7px;height:7px;">&nbsp;</a>'
 			else:
-				d += f'<a style ="background-color : #fff; margin:2px; display:inline-block;border-radius:50px;width:6px;height:6px;">&nbsp; </a>'
+				d += f'<a style ="background-color : #fff; margin:2px; display:inline-block;border-radius:50px;width:7px;height:7px;">&nbsp; </a>'
 		cells = ""  
 		if day != 0:
 			if self.year == self.today_year:
