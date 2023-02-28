@@ -290,14 +290,18 @@ input[type="text"],   input[type='number']{
   outline: none;
   font-family: 'Segoe UI', sans-serif;     
   padding-left: 3%;
-  margin: 8% 0% 8% 1%;
-  box-sizing: border-box; 
-}    
+  margin: 5% 0% 5% 1%;
+  box-sizing: border-box;  
+} 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;}   
 label{ 
-    margin: 8%  0% 8% 15% !important;
+    margin: 5%  0% 5% 15% !important;
 }
 p{ 
-    margin: 8% 30% 8% 1% !important;
+    margin: 5% 30% 5% 1% !important;
 } 
 .hrr{
     border-left: 1px solid #a7a7a7;

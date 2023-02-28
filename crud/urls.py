@@ -73,8 +73,8 @@ urlpatterns = [
     re_path(r'^adminDashboard$', views.CalendarView.as_view(), name='adminDashboard'),
     re_path(r'^sidebar$', views.CalendarViewEmp.as_view(), name='sidebar'),
     re_path(r'^event/new$', views.event, name='event_new'),
-    re_path(r'^event/edit/(?P<event_id>\d+)/$', views.event, name='event_edit'),
     re_path(r'^event/delete/(?P<event_id>\d+)/$', views.delete_event, name='event_delete'),
+    re_path(r'^event/edit/(?P<event_id>\d+)/$', views.event, name='event_edit'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
