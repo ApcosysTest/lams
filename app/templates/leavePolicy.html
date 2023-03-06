@@ -7,8 +7,7 @@
     <meta name="description" content="Sversity is the online edu. Tech division of Apcosys Private Limited and Apcosys is a software development and consultancy company with headquarter in Bangalore, India. Sversity online learning destination, offering high-quality courses from the world's best universities and institutions to learners everywhere. In the age of internet, do we really need to spend huge amount on getting degrees? One can equally quench his third for knowledge by joining online classes.">
     <title>Leapss - Leave Management System</title>
     {% load static %}
-    <link href="{% static 'assets\css\admin.css' %}" rel="stylesheet">
-    <link href="{% static 'assets\css\calendar.css' %}" rel="stylesheet">
+    <link href="{% static 'assets\css\leave.css' %}" rel="stylesheet"> 
 
     <!-- CSS only -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -85,9 +84,90 @@
                     </li>
                   </ul>
             </nav>
-            <section class="section container pageClass  bg-white rounded dashboard">
+            <section class="section container    bg-white rounded dashboard">
                 <h5 style="color: #009eff; padding: 1% ; ">Leave Policy</h5> 
-                    <textarea name="leavePolicy" id="leavePolicyt" cols="30" rows="10" disabled >{{leave.leavepolicy}}</textarea>
+                <div class="container">
+                    You are eligible for the following leave benefits:
+                    <div class="row leaves">
+                        <div class="col-md-6"  >
+                            <div class="row">
+                                <div class="col-md-6">
+                                     <label for="paidleave"  > <b>Paid Leave</b></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row"> 
+                                            <input type="number" name="paidleave" id="paidleave"  width="100px "> 
+                                            <p >&nbsp; days per annum</p> 
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                     <label for="paidleave" > <b>Unpaid Leave</b></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row"> 
+                                            <input type="number" name="paidleave" id="paidleave"  width="100px "> 
+                                            <p >&nbsp; days per annum</p> 
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                     <label for="paidleave" > <b>Medical Leave</b></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row"> 
+                                            <input type="number" name="paidleave" id="paidleave"  width="100px "> 
+                                            <p >&nbsp; days per annum</p> 
+                                    </div> 
+                                </div>
+                            </div>
+                           
+                        </div> 
+                        <div class="col-md-6 ">
+                            <div class="hrr">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                         <label for="paidleave" > <b>Deputation</b></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row"> 
+                                                <input type="number" name="paidleave" id="paidleave"  width="100px "> 
+                                                <p >&nbsp; days per annum</p> 
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                         <label for="paidleave" > <b>Compensatory Leave</b></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row"> 
+                                                <input type="number" name="paidleave" id="paidleave"  width="100px "> 
+                                                <p >&nbsp; days per annum</p> 
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                         <label for="paidleave" > <b>Casual/Other</b></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row"> 
+                                                <input type="number" name="paidleave" id="paidleave"  width="100px "> 
+                                                <p >&nbsp; days per annum</p> 
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <textarea name="leavePolicy" id="leavePolicyt" cols="30" rows="9" disabled >{{leave.leavepolicy}}</textarea>
+
+                </div>
               </section>
         </div>
     </div> 

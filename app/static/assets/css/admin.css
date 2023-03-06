@@ -804,6 +804,10 @@ height: 50px;
     .navbar .logOut{ 
       display: none;
     }
+    .cardd{  
+      width: 75% !important;
+      height: 90px !important; 
+    }
     }
     
     @media (min-width: 768px) {
@@ -818,6 +822,7 @@ height: 50px;
     
       body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
         margin-left: -17rem;
+        min-height: 50vh;
       }
     }
 
