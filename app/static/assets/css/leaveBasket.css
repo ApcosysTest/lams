@@ -100,30 +100,31 @@
 .basket1 a{
   margin-left: 0px;
   width: 100%;
-  padding: 5px;
+  padding: 10px 5px;
 }
 .basket2 a{
   margin-left: 0%; 
   width: 100%;
-  padding:5px;
+  padding:10px 5px;
 }
 .basket3 a{
   margin-left: 0%; 
   width: 100%;
-  padding:5px;
+  padding:10px 5px;
 }
 .basket4 a{
   margin-left: 0%; 
   width: 100%;
-  padding: 5px;
+  padding: 10px 5px;
 }
 .buttons .cancelButton{
-  margin-left: -10px;
+  margin-left: 3%;
   margin-bottom: 20px;
-  padding: 5% 28%;
+  padding: 5% 27%;
+  box-shadow: none;
 }
 .buttons .applyButton{
-  margin-left: -20% ;
-  padding: 5% 30%;
+  margin-left: -15% ;
+  padding: 5% 34%;
 }
 }

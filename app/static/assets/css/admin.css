@@ -751,8 +751,10 @@ height: 50px;
 
 .leapss .navToggle,.leapss .button, .leapss .toggle{
   display: none;
+} 
+.logo.btn:focus{
+  box-shadow: none !important;
 }
-
 @media(max-width:576px){
     .logo img{
         height: 80px;
@@ -780,12 +782,15 @@ height: 50px;
       margin-left: -20px;
       background-color: transparent !important;
     }
+    .navbar  #sidebarToggle:focus { 
+      box-shadow: none !important;
+    }
     .leapss .navToggle{
       display: inline;
       font-size: 28px;
       color: #a7a7a7;
       margin-left: 50%;
-    }
+    }  
     .navbar .input-group{
       display: none;
     }
@@ -794,8 +799,10 @@ height: 50px;
     }
     .navbar .logo span{
       text-align: center; 
-      font-size: 16px;
+      font-size: 18px;
       margin-left: 25px;
+      display: flex;
+      align-items: center;
     }
     .navbar .toggle .navToggle{ 
       font-size: 26px;
@@ -808,6 +815,13 @@ height: 50px;
       width: 75% !important;
       height: 90px !important; 
     }
+    input[type="text"],  input[type='tel'],  input[type='number'], input[type='email'],input[type = 'password'] ,select{ 
+      width: 90%;
+      height: 50px; 
+    } 
+    #previous .next #nextButton{  
+      margin-left: 18%; 
+    } 
     }
     
     @media (min-width: 768px) {

@@ -136,17 +136,15 @@
                                           <a href="{{employee.Image.url}}" target="_blank" style="text-align: center; margin-top: 0%;">View Photo</a> 
                                         <p class="card-text" style="color:#5B5B5B; text-align: center; padding: 0%;" > 
                                                 <input id="fileUp" type="file" id="Image" name="Image" style="display: none;" value="{{ employee.Image }}">
-                                                <a id="upload_link" href="javascript:void(0)"  type="button   "      class="btn btn-primary btn-sm  add" >Update</a>
+                                                <a id="upload_link" href="javascript:void(0)"  type="button   "     style="margin-top: 8%;" class="btn btn-primary btn-sm  uploadButton" >Update</a>
                                            
                                         </p>
                                       </div> 
                                       </div>
-                                      <div class="row"style="margin-left: 2%;">
-                                        <div class="col-md-6"><a href="/edit" type="button"style="margin-left: -17px" class="btn  btn-outline-info btn-sm cancel"> Cancel</a></div>
-                                        <div class="col-md-6"><button type="submit" class="btn   btn-primary btn-sm  add "  onclick="wrong_pass_alert()">Add</button></div>
-                                  
-                                  
-                                </div>
+                                      <div style="margin-left: 2%;">
+                                        <a href="/employees"   class="btn  btn-outline-info btn-md cancel"> Cancel</a>
+                                        <button type="submit" class="btn   btn-primary btn-sm  add "  onclick="wrong_pass_alert()">Add</button>
+                                     </div>
                                     </div>
                             </div>
                              

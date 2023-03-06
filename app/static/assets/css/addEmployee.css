@@ -12,17 +12,7 @@
 .greeting {
   display: none;
 }
-
-  form .add{
-  margin: 2%;
-  margin-left: 22%;
-  }
-  form .cancel{
-  margin: 2%;
-  margin-right: 25%;
-  padding: 10px 40px 10px 40px;
-  border-color: #009eff;
-  }
+ 
   .details .lr .left .card{
    width: 97%;
   }
@@ -156,7 +146,10 @@ padding-top: 6%;
 }
 
 @media (max-width: 576px) {
-
+  form .add {  
+    margin-left: 8%;
+    padding: 12px 40px 12px 40px;
+  }
 .userDetails{
 margin-left: 0%;
 padding-top: 6%;
@@ -168,8 +161,24 @@ text-align: center;
 textarea{
   width: 100%;
 } 
+.cards .preview img{
+  margin-left: 33%;
+}
+form .upup a{ 
+   text-align: center;
+   margin-left: 9%;
+}
 input[type="text"], input[type='date'],input[type='tel'],input[type='email'],input[type='password'] {
-  width: 100%;
+  width: 90%; 
+}
+form .cancel{ 
+  margin-right: 6%; 
+  }
+.cards{ 
+  width: 90%;
+  height: 27%;
+  margin: 10px 8px;
+  margin-bottom: 4%;
 }
 }
 
