@@ -161,6 +161,14 @@
     border-radius: 5px;
     margin:0px 
   } 
+  .event ul li .others {
+    display:flex;
+    height:100%;
+    width:1px; 
+    border:2px solid #808080;
+    border-radius: 5px;
+    margin:0px 
+  } 
   .event ul li .title { 
     font-family: 'Segoe UI', sans-serif;
     font-size: 16px;  
@@ -303,14 +311,14 @@
     width: 100% !important;   
     margin: 0%;
   }
-  .event ul li .publicHoliday {
+  /* .event ul li .publicHoliday {
     display:flex;
     height:100%; 
     width: 100% !important;
     border:2px solid #a7a7a7;
     border-radius: 5px;
     margin:0px 
-  } 
+  }  */
   .event ul li .event {
     display:flex;
     height:100%; 
@@ -324,6 +332,14 @@
     height:100%; 
     width: 100% !important;
     border:2px solid #FFC14E;
+    border-radius: 5px;
+    margin:0px 
+  } 
+  .event ul li .others {
+    display:flex;
+    height:100%; 
+    width: 100% !important;
+    border:2px solid #808080;
     border-radius: 5px;
     margin:0px 
   } 

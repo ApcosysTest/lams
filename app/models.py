@@ -128,7 +128,7 @@ class Absent_emp(models.Model):
 
     
 class Event(models.Model):
-    CATEGORY_CHOICES = [ ('Birthday', 'Birthday'), ('Public Holiday', 'Public Holiday'), ('Event', 'Event'),]
+    CATEGORY_CHOICES = [ ('Birthday', 'Birthday'), ('Public Holiday', 'Public Holiday'), ('Event', 'Event'), ('Others', 'Others'),]
     title = models.CharField(max_length=200)
     description = models.TextField()
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
