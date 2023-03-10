@@ -110,6 +110,12 @@ class Leave_App(models.Model):
 class Leave_Policy(models.Model):
     Username = models.CharField(max_length=20,blank = True,null=True)
     leavepolicy = models.CharField(max_length=50000)
+    paidleave =  models.IntegerField(default=00,blank = True,null=True)   
+    unpaidleave =  models.IntegerField(default=00,blank = True,null=True)   
+    medicalleave =  models.IntegerField(default=00,blank = True,null=True) 
+    deputation =    models.IntegerField(default=00,blank = True,null=True)
+    compleave =  models.IntegerField(default=00,blank = True,null=True)   
+    otherleave =  models.IntegerField(default=00,blank = True,null=True)   
     leave_status =  models.IntegerField(default=1,blank = True,null=True)   
     
     class Meta:  

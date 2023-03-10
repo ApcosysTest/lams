@@ -39,7 +39,7 @@ def leavePolicySetting(request):
         if form.is_valid():  
             try:  
                 form.save()
-                messages.success(request,"Successfully")  
+                messages.success(request,"Successfully Saved")  
                 return redirect('/leavePolicySetting')  
             except:  
                 pass  
@@ -51,10 +51,23 @@ def leavePolicySetting_update(request):
     
     Username = request.session['Username']
     leavepolicy = request.POST.get('leavepolicy')
+    paidleave = request.POST.get('paidleave')
+    unpaidleave = request.POST.get('unpaidleave')
+    medicalleave = request.POST.get('medicalleave')
+    deputation = request.POST.get('deputation')
+    compleave = request.POST.get('compleave')
+    otherleave = request.POST.get('otherleave')
+    
     obj = Leave_Policy.objects.get(Username=Username)
     obj.leavepolicy = leavepolicy
+    obj.paidleave =  paidleave
+    obj.unpaidleave =  unpaidleave
+    obj.medicalleave =  medicalleave
+    obj.deputation = deputation
+    obj.compleave =  compleave
+    obj.otherleave =  otherleave
     obj.save()
-    messages.success(request, "Leave Policy Update...." )
+    messages.success(request, "Leave Policy Successfully Updated" )
     return redirect("/leavePolicySetting")
 
 
