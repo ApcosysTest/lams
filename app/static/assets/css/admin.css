@@ -755,6 +755,11 @@ height: 50px;
 .logo.btn:focus{
   box-shadow: none !important;
 }
+.options .img2{
+  margin-top:20px;
+  color:#707070;
+  display: none;
+}
 @media(max-width:576px){
     .logo img{
         height: 80px;

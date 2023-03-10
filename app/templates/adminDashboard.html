@@ -174,8 +174,17 @@
                               </ul>
                             </div>
                           </div>
-                         
-                          <a class="btn  eventHeader" href="{% url 'event_new' %}"><i style="font-size: 18px;" class="bi bi-plus"></i> Add Event</a>
+                          <div class="row">
+                            <div class="col-md-6 alive">
+                              <a class="btn  eventHeader" href="{% url 'event_new' %}"> Add Event</a>
+
+                            </div>
+                            <div class="col-md-6 ">
+                              <a class="btn dead deleteEve  eventHeader" onclick="disdel()"> Delete Event</a>
+                              <a style="display: none;text-decoration: none;"btn class="deleteEve ded eventHeader" onclick="candel()"> Cancel</a>
+
+                            </div>
+                          </div>
                           
                         </div> 
                         <div class="eve ">{{ event }}</div>  
@@ -191,6 +200,7 @@
         </div>
     </div>
     <script>
+      
       $(document).ready(function() {
       {
           $(".search").addClass("shadow-none");
@@ -201,9 +211,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="{% static 'assets\js\main.js' %}"></script>
-    <script>
-        AOS.init();
-    </script>
+     <script>
+      function deleteEvent(count){  
+        primary = document.getElementById('primaryButton'+count)
+        console.log(primary,count)
+      }
+     </script>
 
 </body>
 </html>

@@ -21,7 +21,21 @@ window.addEventListener('DOMContentLoaded', event => {
   }
 
 });
-
+function disdel(){
+  $('.deleteEve').css('display','none')
+  $('.dead').css('display','none') 
+  $('.ded').css('display','block')  
+  $('.ded').css('cursor','pointer')  
+  $('.img2').css('display','block');
+  $('.img1').css('display','none'); 
+}
+function candel(){
+  $('.deleteEve').css('display','none')
+  $('.dead').css('display','block') 
+  $('.ded').css('display','none')  
+  $('.img2').css('display','none');
+  $('.img1').css('display','block'); 
+}
 $('textarea').keyup(function() {
     
   var characterCount = $(this).val().length,

@@ -217,9 +217,26 @@
     width: 99.5%;
     margin-top: -2px;
     margin-left: 0.5%;
+    margin-bottom: 3%;
+    text-align: center;
+    padding: 9% 6%; 
+  }
+    .event .eventHeader1{  
+    border: 1px solid #009eff;
+    background-color: #009eff;
+    border-radius: 5px;
+    color: #fff;
+    width: 99.5%;
+    margin-top: -2px;
+    margin-left: 0.5%;
     margin-bottom: 1%;
     text-align: center;
-    padding: 3.8% 6%; 
+    padding: 4.8% 6%; 
+  }
+  .event .eventHeader:hover{
+    border: 1px solid #009eff;
+    color: #fff;
+    background-color: #009eff; 
   }
   
   .clear{
