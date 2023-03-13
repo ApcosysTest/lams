@@ -952,16 +952,15 @@ class CalendarView(generic.ListView):
 
         # use today's date for the calendar
         today = str(get_date(self.request.GET.get('day', None)))
-        today_year, today_month, today_date = (int(x) for x in today.split('-'))
-
+        today_year, today_month, today_date = (int(x) for x in today.split('-')) 
+        adminStatus = True
         d = get_date(self.request.GET.get('month', None))
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
-        cal = Calendar(d.year, d.month, today_date, today_month, today_year)
+        cal = Calendar(d.year, d.month, today_date, today_month, today_year, adminStatus)
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
-
-        event = Eventcal(d.year, d.month)
+        event = Eventcal(d.year, d.month, adminStatus)
         html_event = event.formatmonth(withyear=True)
         context['event'] = mark_safe(html_event)
         
@@ -1042,26 +1041,21 @@ class CalendarViewEmp(generic.ListView):
         return dic
     
         
-    def get_context_data(self, **kwargs):
-        print("h1")
+    def get_context_data(self, **kwargs): 
         context = super().get_context_data(**kwargs)
 
         # use today's date for the calendar
-        today = str(get_date(self.request.GET.get('day', None)))
-        print(today)
-        today_year, today_month, today_date = (int(x) for x in today.split('-'))
-        print(today_date)
-        print(today_month)
-        print(today_year)
+        today = str(get_date(self.request.GET.get('day', None))) 
+        today_year, today_month, today_date = (int(x) for x in today.split('-')) 
         
         d = get_date(self.request.GET.get('month', None))
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
-        cal = Calendar(d.year, d.month, today_date, today_month, today_year)
+        adminStatus = False
+        cal = Calendar(d.year, d.month, today_date, today_month, today_year, adminStatus)
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
-
-        event = Eventcal(d.year, d.month)
+        event = Eventcal(d.year, d.month, adminStatus)
         html_event = event.formatmonth(withyear=True)
         context['event'] = mark_safe(html_event)
         
