@@ -15,7 +15,7 @@ class Calendar(HTMLCalendar):
 	# filter events by day
 	def formatday(self, day,weekday, events): 
 		events_per_day = events.filter(date__day=day)
-		nonAdminEvents = events_per_day.filter(hide=False)   
+		nonAdminEvents = events_per_day.filter(visibility=False)   
 		weekdays = "mon" if  weekday == 0 else "tue" if weekday == 1 else "wed" if weekday == 2 else "thu" if weekday == 3 else "fri" if weekday == 4 else "sat" if weekday == 5 else "sun"
 		d = ''  
 		a = ''  
@@ -100,7 +100,7 @@ class Eventcal(HTMLCalendar):
 	def eventlist(self, day, events): 
 			
 		events_per_day = events.filter(date__day=day) 
-		nonAdminEvents = events_per_day.filter(hide=False)    
+		nonAdminEvents = events_per_day.filter(visibility=False)    
 		d = ''
 		a=''
 
